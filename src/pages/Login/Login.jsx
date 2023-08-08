@@ -11,8 +11,8 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { isValidEmail, isValidPassword } from '../../utils';
 import LPTButton from '../../components/LPTButton/LPTButton';
-
 import './Login.scss'
+import { LAMT_API } from '../../api'
 
 const Login = () => {
   const [email, setEmail] = useState({
@@ -42,6 +42,20 @@ const Login = () => {
   // const handleBlur = () => {
   //   setEmail({ ...email, focus: false, error: !isValidEmail(email.value) })
   // };
+  async function handleSubmit(event){
+    try{
+      event.preventDefault();
+      console.log("handleSubmit", event);
+      let loginResponse = await LAMT_API.endpoints.superAdmin.login({email: email.value, password: password.value});
+      console.log("loginResponse", loginResponse)
+      if(loginResponse?.data?.success){
+        localStorage.setItem("authToken", loginResponse?.data?.data?.token)
+      }
+
+    } catch(err){
+      console.log(err)
+    }
+  }
   return (
     <div className='login-main'>
       <div className='login-container'>
@@ -81,7 +95,7 @@ const Login = () => {
           <Link href="#" underline="none">
             Forget Password?
           </Link>
-          <LPTButton content="Continue" />
+          <LPTButton content="Continue"  onClick={handleSubmit}/>
           <Box>
             <Typography variant="subtitle1" gutterBottom> Don't have an account? </Typography>
             <Link href="#" underline="none">

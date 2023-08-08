@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard/Dashboard'
@@ -17,19 +17,22 @@ import Sales from './pages/Sales/Sales'
 import Reports from './pages/Reports/Reports'
 import Settings from './pages/Settings/Settings'
 import Login from './pages/Login/Login'
-
+import { LAMT_API } from './api'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  useEffect(() => {
+    LAMT_API.init()
+  }, [])
   return (
     <>
       <div className='app'>
         <BrowserRouter>
           <Routes>
-            <Route index element={<Dashboard />} />
+            <Route index element={<ProtectedRoute> <Dashboard />  </ProtectedRoute>} />
             <Route path='/login' element={<Login />} />
-            <Route path='/transaction' element={<Transaction />} />
+            <Route path='/transaction' element={<ProtectedRoute> <Transaction /> </ProtectedRoute>} />
             <Route path='/add-connection' element={<AddConnection />} />
             <Route path='/expenses' element={<Expenses />} />
             <Route path='/add-expense' element={<PocketExpense />} />
