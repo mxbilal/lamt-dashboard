@@ -1513,16 +1513,23 @@ body {
             }
           }
         }
-        .perks-right{
+
+        .perks-right {
           width: 40%;
-          .perks-image{
+
+          .perks-image {
             width: 100%;
-            img{
+
+            img {
               max-width: 100%;
             }
           }
         }
       }
     }
+  }
+
+  .logo {
+    mix-blend-mode: multiply;
   }
 }

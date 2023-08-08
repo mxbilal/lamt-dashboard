@@ -16,35 +16,37 @@ import Purchases from './pages/Purchases/Purchases'
 import Sales from './pages/Sales/Sales'
 import Reports from './pages/Reports/Reports'
 import Settings from './pages/Settings/Settings'
+import Login from './pages/Login/Login'
 
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-   <>
-   <div className='app'>
-    <BrowserRouter>
-    <Routes>
-      <Route index element={<Dashboard/>}/>
-      <Route path='/transaction' element={<Transaction/>} />
-      <Route path='/add-connection' element={<AddConnection/>} />
-      <Route path='/expenses' element={<Expenses/>} />
-      <Route path='/add-expense' element={<PocketExpense/>} />
-      <Route path='/dividend' element={<Dividend/>} />
-      <Route path='/pay-dividend' element={<DividendPayment/>} />
-      <Route path='/payroll' element={<Payroll/>} />
-      <Route path='/refer-friends' element={<ReferFriends/>} />
-      <Route path='/taxes' element={<Taxes/>} />
-      <Route path='/market-perks' element={<MarketPerks/>} />
-      <Route path='/purchases' element={<Purchases/>} />
-      <Route path='/sales' element={<Sales/>} />
-      <Route path='/reports' element={<Reports/>} />
-      <Route path='/settings' element={<Settings/>} />
-    </Routes>
-    </BrowserRouter>
-   </div>
-   </>
+    <>
+      <div className='app'>
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<Dashboard />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/transaction' element={<Transaction />} />
+            <Route path='/add-connection' element={<AddConnection />} />
+            <Route path='/expenses' element={<Expenses />} />
+            <Route path='/add-expense' element={<PocketExpense />} />
+            <Route path='/dividend' element={<Dividend />} />
+            <Route path='/pay-dividend' element={<DividendPayment />} />
+            <Route path='/payroll' element={<Payroll />} />
+            <Route path='/refer-friends' element={<ReferFriends />} />
+            <Route path='/taxes' element={<Taxes />} />
+            <Route path='/market-perks' element={<MarketPerks />} />
+            <Route path='/purchases' element={<Purchases />} />
+            <Route path='/sales' element={<Sales />} />
+            <Route path='/reports' element={<Reports />} />
+            <Route path='/settings' element={<Settings />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </>
   )
 }
 
