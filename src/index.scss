@@ -1532,4 +1532,12 @@ body {
   .logo {
     mix-blend-mode: multiply;
   }
+
+}
+
+@mixin flex($direction, $gap, $align) {
+  display: flex;
+  flex-direction: $direction;
+  gap: $gap;
+  align-items: $align;
 }

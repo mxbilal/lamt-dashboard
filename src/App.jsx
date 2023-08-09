@@ -30,8 +30,10 @@ function App() {
       <div className='app'>
         <BrowserRouter>
           <Routes>
-            <Route index element={<ProtectedRoute> <Dashboard />  </ProtectedRoute>} />
-            <Route path='/login' element={<Login />} />
+            <Route index element={<ProtectedRoute children={<Dashboard />} />} />
+            <Route path='/login' element={
+              <ProtectedRoute children={<Login />} />
+            } />
             <Route path='/transaction' element={<ProtectedRoute> <Transaction /> </ProtectedRoute>} />
             <Route path='/add-connection' element={<AddConnection />} />
             <Route path='/expenses' element={<Expenses />} />

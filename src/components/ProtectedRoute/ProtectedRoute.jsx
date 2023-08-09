@@ -1,13 +1,18 @@
 import React from 'react'
-import {Navigate, useLocation} from "react-router-dom"
+import { Navigate, useLocation } from "react-router-dom"
 
-const ProtectedRoute = ({children}) => {
+const ProtectedRoute = ({ children }) => {
 
   let token = localStorage.getItem("authToken")
-  if(!token) {
-      return <Navigate to="/login" replace />
+  let pathName = window.location.pathname.split("/")[1]
+  console.log(pathName)
+  if (!token) {
+    return <Navigate to="/login" replace />
   }
- return children
+  else if (token && pathName === 'login') {
+    return <Navigate to="/" replace />
+  }
+  return children
 
 };
 
