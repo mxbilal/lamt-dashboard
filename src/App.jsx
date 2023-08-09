@@ -20,6 +20,7 @@ import Login from './pages/Login/Login'
 import { LAMT_API } from './api'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import ForgetPassword from './pages/ForgetPassword/ForgetPassword'
+import ResetPassword from './pages/ResetPassword/ResetPassword'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -37,6 +38,9 @@ function App() {
             } />
             <Route path='/forget-password' element={
               <ProtectedRoute children={<ForgetPassword />} />
+            } />
+            <Route path='/new-password' element={
+              <ProtectedRoute children={<ResetPassword />} />
             } />
             <Route path='/transaction' element={<ProtectedRoute> <Transaction /> </ProtectedRoute>} />
             <Route path='/add-connection' element={<AddConnection />} />

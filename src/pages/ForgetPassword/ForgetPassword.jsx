@@ -10,9 +10,10 @@ import './ForgetPassword.scss'
 import { LAMT_API } from '../../api'
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ForgetPassword = () => {
+  const navigate = useNavigate()
   const [email, setEmail] = useState({
     value: '',
     error: false,
@@ -26,29 +27,30 @@ const ForgetPassword = () => {
   async function handleSubmit(event) {
     event.preventDefault();
     if (!email.error) {
-      try {
-        let loginResponse = await LAMT_API.endpoints.superAdmin.login({ email: email.value, password: password.value });
-        console.log("loginResponse", loginResponse?.data?.data)
-        if (loginResponse?.data?.success) {
-          localStorage.setItem("authToken", loginResponse?.data?.data?.token)
-          window.location.reload()
-        }
-        else {
-          toast.error(loginResponse?.response?.data?.message, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
+      navigate('/new-password', { state: { email: email.value } })
+      // try {
+      //   let loginResponse = await LAMT_API.endpoints.superAdmin.login({ email: email.value, password: password.value });
+      //   console.log("loginResponse", loginResponse?.data?.data)
+      //   if (loginResponse?.data?.success) {
+      //     localStorage.setItem("authToken", loginResponse?.data?.data?.token)
+      //     window.location.reload()
+      //   }
+      //   else {
+      //     toast.error(loginResponse?.response?.data?.message, {
+      //       position: "top-center",
+      //       autoClose: 5000,
+      //       hideProgressBar: false,
+      //       closeOnClick: true,
+      //       pauseOnHover: true,
+      //       draggable: true,
+      //       progress: undefined,
+      //       theme: "light",
+      //     });
+      //   }
 
-      } catch (err) {
-        console.log(err)
-      }
+      // } catch (err) {
+      //   console.log(err)
+      // }
     }
   }
   return (

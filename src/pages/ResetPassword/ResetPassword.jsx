@@ -13,36 +13,34 @@ import './ResetPassword.scss'
 import { LAMT_API } from '../../api'
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const ResetPassword = () => {
-  const [email, setEmail] = useState({
-    value: '',
-    error: false,
-    focus: false,
-  })
+  const location = useLocation()
+  console.log(location)
   const [password, setPassword] = useState({
     value: '',
     error: false,
     focus: false,
   })
+  const [confirmPassword, setConfirmPassword] = useState({
+    value: '',
+    error: false,
+    focus: false,
+  })
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleEmailChange = (event) => {
-    const newEmail = event.target.value;
-    setEmail({ value: newEmail, error: !isValidEmail(newEmail) });
-  };
+  const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
   const handlePasswordChange = (event) => {
     const newPass = event.target.value;
     setPassword({ value: newPass, error: !isValidPassword(newPass) });
   };
-  // const handleFocus = () => {
-  //   setEmail({ ...email, focus: true });
-  // };
 
-  // const handleBlur = () => {
-  //   setEmail({ ...email, focus: false, error: !isValidEmail(email.value) })
-  // };
+  const handleConfirmPasswordChange = (event) => {
+    const newPass = event.target.value;
+    setConfirmPassword({ value: newPass, error: password.value !== newPass });
+  };
   async function handleSubmit(event) {
     event.preventDefault();
     if (!email.error) {
@@ -81,17 +79,7 @@ const ResetPassword = () => {
             <Typography variant="subtitle1" gutterBottom> Please Login to continue to dashboard </Typography>
           </Box>
           <form onSubmit={handleSubmit}>
-            <TextField
-              label='Email'
-              value={email.value}
-              onChange={handleEmailChange}
-              required
-              fullWidth
-              // onBlur={handleBlur}
-              // onFocus={handleFocus}
-              error={email.error}
-              helperText={!email.error ? '' : 'Invalid email format'}
-            />
+
             <TextField
               fullWidth
               required
@@ -114,18 +102,35 @@ const ResetPassword = () => {
               error={password.error}
               helperText={!password.error ? '' : 'Password must be 8 characters, with 1 capital letter, 1 number, and 1 special character'}
             />
-            <Link to={'/forget-password'} underline="none">
-              Forget Password?
-            </Link>
+            <TextField
+              fullWidth
+              required
+              type={showConfirmPassword ? 'text' : 'password'}
+              InputProps={
+                {
+                  endAdornment: <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowConfirmPassword}
+                      edge="end"
+                    >
+                      {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              }
+              onChange={handleConfirmPasswordChange}
+              label="New Password"
+              error={confirmPassword.error}
+              helperText={!confirmPassword.error ? '' : 'Both Password must be same!'}
+            />
             <LPTButton content="Continue" type={"submit"} />
           </form>
           <Box className='first-login'>
-            <Typography variant="subtitle1" gutterBottom> Don't have an account? </Typography>
-            <Link href="#" underline="none">
-              Sign up
+            <Link to={'/login'} underline="none">
+              Back to Login
             </Link>
           </Box>
-          <Typography variant="subtitle1" gutterBottom> OR</Typography>
         </Box>
       </div>
       <ToastContainer />
