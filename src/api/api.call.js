@@ -25,7 +25,6 @@ export const LAMT_API = {
     return ex
   },
   onSuccess(response) {
-    console.log("response", response.config.url, response)
     return response
   },
   endpoints: {

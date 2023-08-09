@@ -1,15 +1,17 @@
 import React from 'react'
 import { Navigate, useLocation } from "react-router-dom"
 
-const ProtectedRoute = ({ children }) => {
+const unAuthRoutes = ['login', 'forget-password', 'new-password']
 
+const ProtectedRoute = ({ children }) => {
   let token = localStorage.getItem("authToken")
   let pathName = window.location.pathname.split("/")[1]
-  console.log(pathName)
-  if (!token) {
+  let routeType = unAuthRoutes.includes(pathName) ? "public" : "private"
+
+  if (!token && routeType !== 'public') {
     return <Navigate to="/login" replace />
   }
-  else if (token && pathName === 'login') {
+  if (token && routeType === 'public') {
     return <Navigate to="/" replace />
   }
   return children

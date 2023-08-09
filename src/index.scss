@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 
+$basic_text_color: #007BAD;
+
 body {
   background-color: #f5f6f8;
   margin: 0;
@@ -1533,6 +1535,10 @@ body {
     mix-blend-mode: multiply;
   }
 
+  a {
+    text-decoration: none;
+    color: $basic_text_color;
+  }
 }
 
 @mixin flex($direction, $gap, $align) {

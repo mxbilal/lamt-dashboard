@@ -9,13 +9,13 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { isValidEmail, isValidPassword } from '../../utils';
 import LPTButton from '../../components/LMTButton/LMTButton';
-import './Login.scss'
+import './ResetPassword.scss'
 import { LAMT_API } from '../../api'
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const ResetPassword = () => {
   const [email, setEmail] = useState({
     value: '',
     error: false,
@@ -133,4 +133,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default ResetPassword
