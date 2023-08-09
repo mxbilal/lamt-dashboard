@@ -13,10 +13,11 @@ import './ResetPassword.scss'
 import { LAMT_API } from '../../api'
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const ResetPassword = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   console.log(location)
   const [password, setPassword] = useState({
     value: '',
@@ -43,16 +44,20 @@ const ResetPassword = () => {
   };
   async function handleSubmit(event) {
     event.preventDefault();
-    if (!email.error) {
+    if (!password.error) {
       try {
-        let loginResponse = await LAMT_API.endpoints.superAdmin.login({ email: email.value, password: password.value });
-        console.log("loginResponse", loginResponse?.data?.data)
-        if (loginResponse?.data?.success) {
-          localStorage.setItem("authToken", loginResponse?.data?.data?.token)
-          window.location.reload()
+        let resetPassword = await LAMT_API.endpoints.superAdmin.resetPassword({ 
+          email: location.state.email, 
+          password: password.value, 
+          password_confirmation: confirmPassword.value
+        });
+        console.log("resetPassword", resetPassword)
+        if (resetPassword?.data?.success) {
+          
+          navigate('/login')
         }
         else {
-          toast.error(loginResponse?.response?.data?.message, {
+          toast.error(resetPassword?.response?.data?.message, {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,

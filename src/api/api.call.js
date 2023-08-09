@@ -35,6 +35,20 @@ export const LAMT_API = {
           url: `/super-admin/login`,
           data
         })
+      },
+      forgetPassword(data){
+        return LAMT_API.lamtApi.request({
+          method: "POST",
+          url: `/password/email`,
+          data
+        })
+      },
+      resetPassword(data){
+        return LAMT_API.lamtApi.request({
+          method: "POST",
+          url: `/password/reset`,
+          data
+        })
       }
     }
   }

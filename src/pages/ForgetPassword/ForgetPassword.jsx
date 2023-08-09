@@ -25,33 +25,44 @@ const ForgetPassword = () => {
   };
 
   async function handleSubmit(event) {
-    event.preventDefault();
+    try{
+      event.preventDefault();
     if (!email.error) {
-      navigate('/new-password', { state: { email: email.value } })
-      // try {
-      //   let loginResponse = await LAMT_API.endpoints.superAdmin.login({ email: email.value, password: password.value });
-      //   console.log("loginResponse", loginResponse?.data?.data)
-      //   if (loginResponse?.data?.success) {
-      //     localStorage.setItem("authToken", loginResponse?.data?.data?.token)
-      //     window.location.reload()
-      //   }
-      //   else {
-      //     toast.error(loginResponse?.response?.data?.message, {
-      //       position: "top-center",
-      //       autoClose: 5000,
-      //       hideProgressBar: false,
-      //       closeOnClick: true,
-      //       pauseOnHover: true,
-      //       draggable: true,
-      //       progress: undefined,
-      //       theme: "light",
-      //     });
-      //   }
+      let forgetPassword = await LAMT_API.endpoints.superAdmin.forgetPassword({email: email.value});
+      console.log("forgetPassword", forgetPassword)
+      if(forgetPassword.status === 200){
+        toast.success(forgetPassword?.data?.message, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setTimeout(() => {
+          navigate('/new-password', { state: { email: email.value } })
 
-      // } catch (err) {
-      //   console.log(err)
-      // }
+        },2500)
+      } else {
+        toast.error(forgetPassword?.response?.data?.message, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+      
     }
+    } catch(error) {
+      console.log(error)
+    }
+    
   }
   return (
     <div className='forget-main'>
@@ -74,7 +85,7 @@ const ForgetPassword = () => {
               error={email.error}
               helperText={!email.error ? '' : 'Invalid email format'}
             />
-            <LPTButton content="Continue" type={"submit"} />
+            <LPTButton content="Continue" type={"submit"}/>
           </form>
           <Box className='first-login'>
             <Link to={'/login'} underline="none">
