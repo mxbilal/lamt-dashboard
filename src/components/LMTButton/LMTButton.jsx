@@ -2,9 +2,9 @@ import React from 'react'
 import { Button } from '@mui/material'
 import './LMTButton.scss'
 
-const LMTButton = ({ content, onClick, type }) => {
+const LMTButton = ({ content, onClick, type, ...props }) => {
   return (
-    <Button className='lpt-button' type={type} variant="contained" onClick={onClick}>{content}</Button>
+    <Button {...props} className='lpt-button' type={type} variant="contained" onClick={onClick}>{content}</Button>
   )
 }
 
