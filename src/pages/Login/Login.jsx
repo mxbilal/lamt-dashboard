@@ -14,6 +14,7 @@ import { LAMT_API } from '../../api'
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
   const [email, setEmail] = useState({
@@ -71,6 +72,12 @@ const Login = () => {
       }
     }
   }
+  const responseMessage = (response) => {
+    console.log(response);
+  };
+  const errorMessage = (error) => {
+      console.log(error);
+  };
   return (
     <div className='login-main'>
       <div className='login-container'>
@@ -126,6 +133,7 @@ const Login = () => {
             </Link>
           </Box>
           <Typography variant="subtitle1" gutterBottom> OR</Typography>
+          <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
         </Box>
       </div>
       <ToastContainer />
