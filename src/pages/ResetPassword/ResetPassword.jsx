@@ -18,7 +18,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 const ResetPassword = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  console.log(location)
+  const { search } = location
+  const token = new URLSearchParams(search)
+  console.log(token.get('token'))
   const [password, setPassword] = useState({
     value: '',
     error: false,
@@ -44,16 +46,17 @@ const ResetPassword = () => {
   };
   async function handleSubmit(event) {
     event.preventDefault();
-    if (!password.error) {
+    if (true) {
       try {
-        let resetPassword = await LAMT_API.endpoints.superAdmin.resetPassword({ 
-          email: location.state.email, 
-          password: password.value, 
-          password_confirmation: confirmPassword.value
+        let resetPassword = await LAMT_API.endpoints.superAdmin.resetPassword({
+          email: location.state.email,
+          password: password.value,
+          password_confirmation: confirmPassword.value,
+          token,
         });
         console.log("resetPassword", resetPassword)
         if (resetPassword?.data?.success) {
-          
+
           navigate('/login')
         }
         else {
