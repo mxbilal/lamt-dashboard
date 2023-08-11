@@ -21,6 +21,8 @@ import { LAMT_API } from './api'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import ForgetPassword from './pages/ForgetPassword/ForgetPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
+import ClientLogin from './pages/ClientLogiin/ClientLogin'
+import RegisterType from './pages/Signup/RegisterType'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,14 +35,18 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route index element={<ProtectedRoute children={<Dashboard />} />} />
+            <Route path='/admin/login' element={<Login />} />
             <Route path='/login' element={
-              <ProtectedRoute children={<Login />} />
+              <ProtectedRoute children={<ClientLogin />} />
             } />
             <Route path='/forget-password' element={
               <ProtectedRoute children={<ForgetPassword />} />
             } />
             <Route path='/new-password' element={
               <ProtectedRoute children={<ResetPassword />} />
+            } />
+            <Route path='/signup-type' element={
+              <ProtectedRoute children={<RegisterType />} />
             } />
             <Route path='/transaction' element={<ProtectedRoute> <Transaction /> </ProtectedRoute>} />
             <Route path='/add-connection' element={<AddConnection />} />
