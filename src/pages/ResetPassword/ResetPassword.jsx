@@ -40,6 +40,7 @@ const ResetPassword = () => {
     setPassword({ value: newPass, error: !isValidPassword(newPass) });
   };
 
+
   const handleConfirmPasswordChange = (event) => {
     const newPass = event.target.value;
     setConfirmPassword({ value: newPass, error: password.value !== newPass });
