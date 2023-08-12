@@ -9,13 +9,14 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { isValidEmail, isValidPassword } from '../../utils';
 import LPTButton from '../../components/LMTButton/LMTButton';
-import './Login.scss'
+import '../Login/Login.scss'
 import { LAMT_API } from '../../api'
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
 
-const Login = () => {
+const ClientLogin = () => {
   const [email, setEmail] = useState({
     value: '',
     error: false,
@@ -36,7 +37,13 @@ const Login = () => {
     const newPass = event.target.value;
     setPassword({ value: newPass, error: !isValidPassword(newPass) });
   };
+  // const handleFocus = () => {
+  //   setEmail({ ...email, focus: true });
+  // };
 
+  // const handleBlur = () => {
+  //   setEmail({ ...email, focus: false, error: !isValidEmail(email.value) })
+  // };
   async function handleSubmit(event) {
     event.preventDefault();
     if (!email.error) {
@@ -65,13 +72,19 @@ const Login = () => {
       }
     }
   }
+  const responseMessage = (response) => {
+    console.log(response);
+  };
+  const errorMessage = (error) => {
+    console.log(error);
+  };
   return (
     <div className='login-main'>
       <div className='login-container'>
         <Box className='login-inner'>
           <Box className="login-head">
             <img width={50} height={50} className='logo' src='/favicon.png' />
-            <Typography variant="h4" gutterBottom> Welcome Admin</Typography>
+            <Typography variant="h4" gutterBottom> Welcome </Typography>
             <Typography variant="subtitle1" gutterBottom> Please Login to continue to dashboard </Typography>
           </Box>
           <form onSubmit={handleSubmit}>
@@ -113,6 +126,14 @@ const Login = () => {
             </Link>
             <LPTButton content="Continue" type={"submit"} />
           </form>
+          <Box className='first-login'>
+            <Typography variant="subtitle1" gutterBottom> Don't have an account? </Typography>
+            <Link to={'/signup-type'} underline="none">
+              Sign up
+            </Link>
+          </Box>
+          <Typography variant="subtitle1" gutterBottom> OR</Typography>
+          <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
         </Box>
       </div>
       <ToastContainer />
@@ -120,4 +141,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default ClientLogin

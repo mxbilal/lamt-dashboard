@@ -1,0 +1,25 @@
+@import '../../index.scss';
+
+.register-type-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .register-type-container {
+    // box-shadow: $box_shadow_main
+    padding: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 10px;
+
+    .register-option {
+      color: #3a6d87;
+      border: 1px solid lightgray;
+      padding: 10px;
+    }
+  }
+}
