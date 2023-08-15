@@ -17,12 +17,14 @@ import Sales from './pages/Sales/Sales'
 import Reports from './pages/Reports/Reports'
 import Settings from './pages/Settings/Settings'
 import Login from './pages/Login/Login'
+import TwoFactor from './pages/Login/TwoFactor'
 import { LAMT_API } from './api'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import ForgetPassword from './pages/ForgetPassword/ForgetPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import ClientLogin from './pages/ClientLogiin/ClientLogin'
 import RegisterType from './pages/Signup/RegisterType'
+import Register from './pages/Signup/Register'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -48,6 +50,10 @@ function App() {
             <Route path='/signup-type' element={
               <ProtectedRoute children={<RegisterType />} />
             } />
+            <Route path='/signup' element={
+              <ProtectedRoute children={<Register />} />
+            } />
+            <Route path='/two-factor' element={<TwoFactor />} />
             <Route path='/transaction' element={<ProtectedRoute> <Transaction /> </ProtectedRoute>} />
             <Route path='/add-connection' element={<AddConnection />} />
             <Route path='/expenses' element={<Expenses />} />

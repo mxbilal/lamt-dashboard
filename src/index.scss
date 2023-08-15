@@ -1548,3 +1548,12 @@ body {
   gap: $gap;
   align-items: $align;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.MuiFormControl-root.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: red;
+}
