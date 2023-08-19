@@ -5,16 +5,16 @@ import {
   TextField,
   InputAdornment,
   IconButton,
+  Button,
 } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { isValidEmail, isValidPassword } from '../../utils';
+import { isValidEmail, isValidPassword, showAlert } from '../../utils';
 import LPTButton from '../../components/LMTButton/LMTButton';
 import '../Login/Login.scss'
 import { LAMT_API } from '../../api'
-import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 import { Link } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
+import LMTModal from '../../components/LMTModal/LMTModal';
 
 const ClientLogin = () => {
   const [email, setEmail] = useState({
@@ -37,34 +37,19 @@ const ClientLogin = () => {
     const newPass = event.target.value;
     setPassword({ value: newPass, error: !isValidPassword(newPass) });
   };
-  // const handleFocus = () => {
-  //   setEmail({ ...email, focus: true });
-  // };
-
-  // const handleBlur = () => {
-  //   setEmail({ ...email, focus: false, error: !isValidEmail(email.value) })
-  // };
+  const [open, setOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
   async function handleSubmit(event) {
     event.preventDefault();
     if (!email.error) {
       try {
-        let loginResponse = await LAMT_API.endpoints.superAdmin.login({ email: email.value, password: password.value });
-        console.log("loginResponse", loginResponse?.data?.data)
+        let loginResponse = await LAMT_API.endpoints.superAdmin.clientLogin({ email: email.value, password: password.value });
         if (loginResponse?.data?.success) {
           localStorage.setItem("authToken", loginResponse?.data?.data?.token)
           window.location.reload()
         }
         else {
-          toast.error(loginResponse?.response?.data?.message, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showAlert.failure(loginResponse?.response?.data?.message)
         }
 
       } catch (err) {
@@ -72,12 +57,37 @@ const ClientLogin = () => {
       }
     }
   }
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
+  const handleGoogle = async () => {
+    if (email.value !== '' && !email.error) {
+      setLoading(true)
+      try {
+        let result = await LAMT_API.endpoints.clientAdmin.withGoogle({ email: email.value, password: email.value });
+        if (result?.data?.success) {
+
+        }
+        else {
+          setLoading(false)
+          setOpen(false)
+          showAlert.failure(result?.message)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+  const withGoogleTemplate = <>
+    <TextField
+      label='Email'
+      value={email.value}
+      onChange={handleEmailChange}
+      required
+      fullWidth
+      error={email.error}
+      helperText={!email.error ? '' : 'Invalid email format'}
+    />
+    <Button onClick={handleGoogle}>Submit</Button>
+  </>
+
   return (
     <div className='login-main'>
       <div className='login-container'>
@@ -94,8 +104,6 @@ const ClientLogin = () => {
               onChange={handleEmailChange}
               required
               fullWidth
-              // onBlur={handleBlur}
-              // onFocus={handleFocus}
               error={email.error}
               helperText={!email.error ? '' : 'Invalid email format'}
             />
@@ -133,10 +141,16 @@ const ClientLogin = () => {
             </Link>
           </Box>
           <Typography variant="subtitle1" gutterBottom> OR</Typography>
-          <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+          <Button variant='outlined' onClick={() => setOpen(true)}> Login with Google</Button>
+          {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
         </Box>
       </div>
-      <ToastContainer />
+      <LMTModal
+        open={open}
+        handleClose={() => setOpen(e => !e)}
+        children={withGoogleTemplate}
+        loading={loading}
+      />
     </div>
   )
 }

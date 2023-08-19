@@ -32,21 +32,44 @@ export const LAMT_API = {
       login(data) {
         return LAMT_API.lamtApi.request({
           method: "POST",
-          url: `/super-admin/login`,
+          url: `/superAdmin/login`,
           data
         })
       },
-      forgetPassword(data){
+      forgetPassword(data) {
         return LAMT_API.lamtApi.request({
           method: "POST",
           url: `/password/email`,
           data
         })
       },
-      resetPassword(data){
+      resetPassword(data) {
         return LAMT_API.lamtApi.request({
           method: "POST",
           url: `/password/reset`,
+          data
+        })
+      },
+      twoFactor(data) {
+        return LAMT_API.lamtApi.request({
+          method: "POST",
+          url: `/superAdmin/verify2FA`,
+          data
+        })
+      }
+    },
+    clientAdmin: {
+      login(data) {
+        return LAMT_API.lamtApi.request({
+          method: "POST",
+          url: `/client/login`,
+          data
+        })
+      },
+      withGoogle(data) {
+        return LAMT_API.lamtApi.request({
+          method: "POST",
+          url: '/login/google',
           data
         })
       }

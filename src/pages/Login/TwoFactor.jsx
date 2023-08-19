@@ -3,41 +3,31 @@ import {
   Typography,
   Box,
   TextField,
-  InputAdornment,
-  IconButton,
 } from '@mui/material'
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { isValidEmail, isValidPassword } from '../../utils';
+import { showAlert } from '../../utils';
 import LPTButton from '../../components/LMTButton/LMTButton';
 import './Login.scss'
 import { LAMT_API } from '../../api'
-import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
-import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const TwoFactor = () => {
+  const location = useLocation()
+  const { data } = location.state
+  console.log(data)
   const [code, setCode] = useState('')
   async function handleSubmit(event) {
     event.preventDefault();
-    if (!email.error) {
+    if (code !== '') {
       try {
-        let loginResponse = await LAMT_API.endpoints.superAdmin.login({ email: email.value, password: password.value });
+        let loginResponse = await LAMT_API.endpoints.superAdmin.twoFactor({ google2fa_verification: code });
         console.log("loginResponse", loginResponse?.data?.data)
         if (loginResponse?.data?.success) {
-          localStorage.setItem("authToken", loginResponse?.data?.data?.token)
-          window.location.reload()
+
+          // localStorage.setItem("authToken", loginResponse?.data?.data?.token)
+          // window.location.reload()
         }
         else {
-          toast.error(loginResponse?.response?.data?.message, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showAlert.failure(loginResponse?.response?.data?.message)
         }
 
       } catch (err) {
@@ -67,7 +57,6 @@ const TwoFactor = () => {
           </form>
         </Box>
       </div>
-      <ToastContainer />
     </div>
   )
 }

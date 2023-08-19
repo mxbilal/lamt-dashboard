@@ -27,7 +27,7 @@ const FieldWrapper = ({ field }) => {
   const { name, label, type } = field;
 
   return (
-    <Grid item xs={4}>
+    <Grid item xs={6}>
       <TextField
         type={type || 'text'}
         name={name}
