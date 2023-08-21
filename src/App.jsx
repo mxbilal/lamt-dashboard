@@ -25,6 +25,7 @@ import ResetPassword from './pages/ResetPassword/ResetPassword'
 import ClientLogin from './pages/ClientLogiin/ClientLogin'
 import RegisterType from './pages/Signup/RegisterType'
 import Register from './pages/Signup/Register'
+import MultiStep from './pages/Signup/MultiStep'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -44,7 +45,7 @@ function App() {
             <Route path='/forget-password' element={
               <ProtectedRoute children={<ForgetPassword />} />
             } />
-            <Route path='/new-password' element={
+            <Route path='/reset-password' element={
               <ProtectedRoute children={<ResetPassword />} />
             } />
             <Route path='/signup-type' element={
@@ -52,6 +53,9 @@ function App() {
             } />
             <Route path='/signup' element={
               <ProtectedRoute children={<Register />} />
+            } />
+            <Route path='/signup/:step' element={
+              <ProtectedRoute children={<MultiStep />} />
             } />
             <Route path='/two-factor' element={<TwoFactor />} />
             <Route path='/transaction' element={<ProtectedRoute> <Transaction /> </ProtectedRoute>} />

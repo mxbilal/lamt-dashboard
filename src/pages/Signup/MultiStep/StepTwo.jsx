@@ -2,13 +2,13 @@ import { Box } from '@mui/material'
 import React from 'react'
 import HeadBox from '../../../components/HeadBox/HeadBox'
 import LMTForm from '../../../components/LMTForm/LMTForm'
-import { stepOneValidation, StepOneInitials, StepOneFields } from './data'
+import { stepTwoValidation, StepTwoInitials, StepTwoFields } from './data'
 import { useNavigate } from 'react-router-dom'
 
-const StepOne = () => {
+const StepTwo = () => {
   const navigate = useNavigate()
   const onSubmit = () => {
-    navigate('/signup/2')
+    navigate('/signup/3')
   }
   return (
     <div className='register-main'>
@@ -16,9 +16,9 @@ const StepOne = () => {
         <Box className='register-inner'>
           <HeadBox />
           <LMTForm
-            initialValues={StepOneInitials}
-            validationSchema={stepOneValidation}
-            formFields={StepOneFields}
+            initialValues={StepTwoInitials}
+            validationSchema={stepTwoValidation}
+            formFields={StepTwoFields}
             onSubmit={onSubmit}
           />
         </Box>
@@ -27,4 +27,4 @@ const StepOne = () => {
   )
 }
 
-export default StepOne
+export default StepTwo

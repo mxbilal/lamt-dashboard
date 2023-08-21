@@ -14,7 +14,7 @@ const RegisterType = () => {
           <Link to={'/signup'}> Registeration </Link>
         </div>
         <div className='register-option'>
-          <Link> Register Multi Step </Link>
+          <Link to={'/signup/1'}> Register Multi Step </Link>
         </div>
       </div>
     </div>

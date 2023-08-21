@@ -23,3 +23,21 @@
     }
   }
 }
+
+.register-main {
+  padding: 20px;
+
+  .register-container {
+    padding: 20px;
+    box-shadow: $box_shadow_main;
+
+    .register-inner {
+      @include flex(column, '', 10px, '');
+      padding: 10px 0;
+
+      .register-head {
+        @include flex(column, '', 0, center)
+      }
+    }
+  }
+}

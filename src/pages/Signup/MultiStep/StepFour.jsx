@@ -2,23 +2,24 @@ import { Box } from '@mui/material'
 import React from 'react'
 import HeadBox from '../../../components/HeadBox/HeadBox'
 import LMTForm from '../../../components/LMTForm/LMTForm'
-import { stepOneValidation, StepOneInitials, StepOneFields } from './data'
+import { StepFourFields, StepFourInitials, stepFourValidation } from './data'
 import { useNavigate } from 'react-router-dom'
 
-const StepOne = () => {
+const StepFour = () => {
   const navigate = useNavigate()
   const onSubmit = () => {
-    navigate('/signup/2')
+    alert('thanks for submitting!')
+    navigate('/login')
   }
   return (
     <div className='register-main'>
       <div className='register-container'>
         <Box className='register-inner'>
-          <HeadBox />
+          <HeadBox title={"Admin Registration"} />
           <LMTForm
-            initialValues={StepOneInitials}
-            validationSchema={stepOneValidation}
-            formFields={StepOneFields}
+            initialValues={StepFourInitials}
+            validationSchema={stepFourValidation}
+            formFields={StepFourFields}
             onSubmit={onSubmit}
           />
         </Box>
@@ -27,4 +28,4 @@ const StepOne = () => {
   )
 }
 
-export default StepOne
+export default StepFour

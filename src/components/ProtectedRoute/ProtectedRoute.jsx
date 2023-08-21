@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate, useLocation } from "react-router-dom"
 
-const unAuthRoutes = ['login', 'forget-password', 'new-password', "signup-type", "signup"]
+const unAuthRoutes = ['login', 'forget-password', 'reset-password', "signup-type", "signup"]
 
 const ProtectedRoute = ({ children }) => {
   let token = localStorage.getItem("authToken")

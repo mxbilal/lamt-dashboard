@@ -19,8 +19,9 @@ const ResetPassword = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const { search } = location
-  const token = new URLSearchParams(search)
-  console.log(token.get('token'))
+  const urlParam = new URLSearchParams(search)
+  const token = urlParam.get('token')
+  const email = urlParam.get('email')
   const [password, setPassword] = useState({
     value: '',
     error: false,
@@ -50,7 +51,7 @@ const ResetPassword = () => {
     if (true) {
       try {
         let resetPassword = await LAMT_API.endpoints.superAdmin.resetPassword({
-          email: location.state.email,
+          email: email,
           password: password.value,
           password_confirmation: confirmPassword.value,
           token,

@@ -1542,8 +1542,9 @@ body {
   }
 }
 
-@mixin flex($direction, $gap, $align) {
+@mixin flex($direction, $justify, $gap, $align) {
   display: flex;
+  justify-content: $justify;
   flex-direction: $direction;
   gap: $gap;
   align-items: $align;
