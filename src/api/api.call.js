@@ -67,10 +67,16 @@ export const LAMT_API = {
         })
       },
       withGoogle(data) {
+        const formData = new FormData()
+        formData.append("email", data.email)
+        formData.append("password", data.email)
         return LAMT_API.lamtApi.request({
           method: "POST",
           url: '/login/google',
-          data
+          data: formData,
+          headers: {
+            "Access-Control-Allow-Origin": "*"
+          }
         })
       }
     }

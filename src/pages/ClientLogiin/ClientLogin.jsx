@@ -62,6 +62,7 @@ const ClientLogin = () => {
       setLoading(true)
       try {
         let result = await LAMT_API.endpoints.clientAdmin.withGoogle({ email: email.value, password: email.value });
+        console.log("res", result)
         if (result?.data?.success) {
 
         }

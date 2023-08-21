@@ -11,10 +11,10 @@ const RegisterType = () => {
       <div className='register-type-container'>
         <Typography variant='subtitle1'> Please Select Registration Type</Typography>
         <div className='register-option'>
-          <Link to={'/signup'}> Register One Step </Link>
+          <Link to={'/signup'}> Registeration </Link>
         </div>
         <div className='register-option'>
-          <Link> Register with Wizard </Link>
+          <Link> Register Multi Step </Link>
         </div>
       </div>
     </div>
