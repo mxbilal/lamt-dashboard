@@ -7,7 +7,6 @@ import StepFour from './StepFour';
 
 const MultiStep = () => {
   const { step } = useParams()
-  console.log('ste', step)
   switch (step) {
     case '1':
       return <StepOne />;

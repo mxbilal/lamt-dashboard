@@ -4,10 +4,14 @@ import HeadBox from '../../../components/HeadBox/HeadBox'
 import LMTForm from '../../../components/LMTForm/LMTForm'
 import { stepTwoValidation, StepTwoInitials, StepTwoFields } from './data'
 import { useNavigate } from 'react-router-dom'
+import { useFormData } from '../../../ContextAPI/FormDataContext'
 
 const StepTwo = () => {
   const navigate = useNavigate()
-  const onSubmit = () => {
+  const { formData, setFormData } = useFormData()
+
+  const onSubmit = (values) => {
+    setFormData({ ...formData, ...values });
     navigate('/signup/3')
   }
   return (

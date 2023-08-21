@@ -24,8 +24,8 @@ const LMTForm = ({ initialValues, validationSchema, formFields, onSubmit }) => {
               <Typography variant="h6" gutterBottom>{title}</Typography>
 
               <Grid container spacing={2}>
-                {fields.map((field) => (
-                  <FieldWrapper key={field.name} field={field} />
+                {fields.map((field, j) => (
+                  <FieldWrapper key={j} field={field} />
                 ))}
               </Grid>
             </div>
