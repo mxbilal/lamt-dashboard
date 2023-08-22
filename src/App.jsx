@@ -39,25 +39,13 @@ function App() {
           <Routes>
             <Route index element={<ProtectedRoute children={<Dashboard />} />} />
             <Route path='/admin/login' element={<Login />} />
-            <Route path='/login' element={
-              <ProtectedRoute children={<ClientLogin />} />
-            } />
-            <Route path='/forget-password' element={
-              <ProtectedRoute children={<ForgetPassword />} />
-            } />
-            <Route path='/reset-password' element={
-              <ProtectedRoute children={<ResetPassword />} />
-            } />
-            <Route path='/signup-type' element={
-              <ProtectedRoute children={<RegisterType />} />
-            } />
-            <Route path='/signup' element={
-              <ProtectedRoute children={<Register />} />
-            } />
-            <Route path='/signup/:step' element={
-              <ProtectedRoute children={<MultiStep />} />
-            } />
-            <Route path='/two-factor' element={<TwoFactor />} />
+            <Route path='/login' element={<ProtectedRoute children={<ClientLogin />} />} />
+            <Route path='/forget-password' element={<ProtectedRoute children={<ForgetPassword />} />} />
+            <Route path='/reset-password' element={<ProtectedRoute children={<ResetPassword />} />} />
+            <Route path='/signup-type' element={<ProtectedRoute children={<RegisterType />} />} />
+            <Route path='/signup' element={<ProtectedRoute children={<Register />} />} />
+            <Route path='/signup/:step' element={<ProtectedRoute children={<MultiStep />} />} />
+            <Route path='/two-factor' element={<ProtectedRoute children={<TwoFactor />} />} />
             <Route path='/transaction' element={<ProtectedRoute> <Transaction /> </ProtectedRoute>} />
             <Route path='/add-connection' element={<AddConnection />} />
             <Route path='/expenses' element={<Expenses />} />

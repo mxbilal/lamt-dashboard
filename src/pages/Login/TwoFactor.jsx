@@ -13,18 +13,28 @@ import { useLocation } from 'react-router-dom';
 const TwoFactor = () => {
   const location = useLocation()
   const { data } = location.state
-  console.log(data)
   const [code, setCode] = useState('')
   async function handleSubmit(event) {
     event.preventDefault();
     if (code !== '') {
       try {
         let loginResponse = await LAMT_API.endpoints.superAdmin.twoFactor({ google2fa_verification: code });
-        console.log("loginResponse", loginResponse?.data?.data)
+        console.log("loginResponse", loginResponse?.data, data)
         if (loginResponse?.data?.success) {
-
-          // localStorage.setItem("authToken", loginResponse?.data?.data?.token)
-          // window.location.reload()
+          let data2 = { ...data }
+          try {
+            let loginResponse = await LAMT_API.endpoints.superAdmin.login(data2);
+            if (loginResponse?.data?.success) {
+              showAlert.success(loginResponse?.data?.message)
+              localStorage.setItem("authToken", loginResponse?.data?.data?.token)
+              window.location.reload()
+            }
+            else {
+              showAlert.failure(loginResponse?.response?.data?.message)
+            }
+          } catch (err) {
+            console.log(err)
+          }
         }
         else {
           showAlert.failure(loginResponse?.response?.data?.message)
