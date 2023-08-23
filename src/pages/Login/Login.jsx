@@ -108,9 +108,9 @@ const Login = () => {
                   error={password.error}
                   helperText={!password.error ? '' : 'Password must be 8 characters, with 1 capital letter, 1 number, and 1 special character'}
                 />
-                <Link to={'/forget-password'} underline="none">
+                {/* <Link to={'/forget-password'} underline="none">
                   Forget Password?
-                </Link>
+                </Link> */}
                 <LPTButton content="Continue" type={"submit"} />
               </form>
             </Box>

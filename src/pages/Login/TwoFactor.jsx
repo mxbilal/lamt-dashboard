@@ -8,33 +8,25 @@ import { showAlert } from '../../utils';
 import LPTButton from '../../components/LMTButton/LMTButton';
 import './Login.scss'
 import { LAMT_API } from '../../api'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import LMTLoader from '../../components/LMTLoader/LMTLoader';
 
 const TwoFactor = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   const { data } = location.state
   const [code, setCode] = useState('')
+  const [loading, setLoading] = useState(false)
   async function handleSubmit(event) {
     event.preventDefault();
     if (code !== '') {
+      setLoading(true)
       try {
         let loginResponse = await LAMT_API.endpoints.superAdmin.twoFactor({ google2fa_verification: code });
-        console.log("loginResponse", loginResponse?.data, data)
         if (loginResponse?.data?.success) {
           let data2 = { ...data }
-          try {
-            let loginResponse = await LAMT_API.endpoints.superAdmin.login(data2);
-            if (loginResponse?.data?.success) {
-              showAlert.success(loginResponse?.data?.message)
-              localStorage.setItem("authToken", loginResponse?.data?.data?.token)
-              window.location.reload()
-            }
-            else {
-              showAlert.failure(loginResponse?.response?.data?.message)
-            }
-          } catch (err) {
-            console.log(err)
-          }
+          showAlert.success(loginResponse?.data?.message)
+          navigate('/admin/login')
         }
         else {
           showAlert.failure(loginResponse?.response?.data?.message)
@@ -43,12 +35,13 @@ const TwoFactor = () => {
       } catch (err) {
         console.log(err)
       }
+      setLoading(false)
     }
   }
   return (
     <div className='login-main'>
       <div className='login-container'>
-        <Box className='login-inner'>
+        {loading ? <LMTLoader /> : <Box className='login-inner'>
           <Box className="login-head">
             <img width={50} height={50} className='logo' src='/favicon.png' />
             <Typography variant="h4" gutterBottom> Two Factor Authentication</Typography>
@@ -65,7 +58,7 @@ const TwoFactor = () => {
             />
             <LPTButton content="Continue" type={"submit"} />
           </form>
-        </Box>
+        </Box>}
       </div>
     </div>
   )

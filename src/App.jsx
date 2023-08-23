@@ -38,7 +38,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route index element={<ProtectedRoute children={<Dashboard />} />} />
-            <Route path='/admin/login' element={<Login />} />
+            <Route path='/admin/login' element={<ProtectedRoute children={<Login />} />} />
             <Route path='/login' element={<ProtectedRoute children={<ClientLogin />} />} />
             <Route path='/forget-password' element={<ProtectedRoute children={<ForgetPassword />} />} />
             <Route path='/reset-password' element={<ProtectedRoute children={<ResetPassword />} />} />

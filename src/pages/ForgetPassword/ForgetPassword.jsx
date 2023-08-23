@@ -4,13 +4,13 @@ import {
   Box,
   TextField,
 } from '@mui/material'
-import { isValidEmail } from '../../utils';
+import { isValidEmail, showAlert } from '../../utils';
 import LPTButton from '../../components/LMTButton/LMTButton';
 import './ForgetPassword.scss'
 import { LAMT_API } from '../../api'
-import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from 'react-router-dom';
+import LMTLoader from '../../components/LMTLoader/LMTLoader';
 
 const ForgetPassword = () => {
   const navigate = useNavigate()
@@ -33,31 +33,13 @@ const ForgetPassword = () => {
         let forgetPassword = await LAMT_API.endpoints.superAdmin.forgetPassword({ email: email.value });
         console.log("forgetPassword", forgetPassword)
         if (forgetPassword.status === 200) {
-          toast.success(forgetPassword?.data?.message, {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showAlert.success(forgetPassword?.data?.message)
           setTimeout(() => {
-            navigate('/new-password', { state: { email: email.value } })
+            navigate('/login')
 
           }, 2500)
         } else {
-          toast.error(forgetPassword?.response?.data?.message, {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showAlert.failure(forgetPassword?.response?.data?.message)
         }
 
       }
@@ -68,7 +50,7 @@ const ForgetPassword = () => {
   }
   return (
     <div className='forget-main'>
-      <div className='forget-container'>
+      {loading ? <LMTLoader /> : <div className='forget-container'>
         <Box className='forget-inner'>
           <Box className="forget-head">
             <img width={50} height={50} className='logo' src='/favicon.png' />
@@ -82,8 +64,6 @@ const ForgetPassword = () => {
               onChange={handleEmailChange}
               required
               fullWidth
-              // onBlur={handleBlur}
-              // onFocus={handleFocus}
               error={email.error}
               helperText={!email.error ? '' : 'Invalid email format'}
             />
@@ -95,8 +75,7 @@ const ForgetPassword = () => {
             </Link>
           </Box>
         </Box>
-      </div>
-      <ToastContainer />
+      </div>}
     </div>
   )
 }

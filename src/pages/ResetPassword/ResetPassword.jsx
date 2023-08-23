@@ -7,13 +7,13 @@ import {
   IconButton,
 } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { isValidEmail, isValidPassword } from '../../utils';
+import { isValidPassword, showAlert } from '../../utils';
 import LPTButton from '../../components/LMTButton/LMTButton';
 import './ResetPassword.scss'
 import { LAMT_API } from '../../api'
-import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import LMTLoader from '../../components/LMTLoader/LMTLoader';
 
 const ResetPassword = () => {
   const location = useLocation()
@@ -32,6 +32,7 @@ const ResetPassword = () => {
     error: false,
     focus: false,
   })
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -49,6 +50,7 @@ const ResetPassword = () => {
   async function handleSubmit(event) {
     event.preventDefault();
     if (true) {
+      setLoading(true)
       try {
         let resetPassword = await LAMT_API.endpoints.superAdmin.resetPassword({
           email: email,
@@ -56,32 +58,23 @@ const ResetPassword = () => {
           password_confirmation: confirmPassword.value,
           token,
         });
-        console.log("resetPassword", resetPassword)
-        if (resetPassword?.data?.success) {
-
+        if (resetPassword?.status === 200) {
+          showAlert.success(resetPassword?.response?.data?.message)
           navigate('/login')
         }
         else {
-          toast.error(resetPassword?.response?.data?.message, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showAlert.failure(resetPassword?.response?.data?.message)
         }
 
       } catch (err) {
         console.log(err)
       }
+      setLoading(false)
     }
   }
   return (
     <div className='login-main'>
-      <div className='login-container'>
+      {loading ? <LMTLoader /> : <div className='login-container'>
         <Box className='login-inner'>
           <Box className="login-head">
             <img width={50} height={50} className='logo' src='/favicon.png' />
@@ -142,8 +135,7 @@ const ResetPassword = () => {
             </Link>
           </Box>
         </Box>
-      </div>
-      <ToastContainer />
+      </div>}?
     </div>
   )
 }
