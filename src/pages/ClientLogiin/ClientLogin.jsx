@@ -12,11 +12,12 @@ import { isValidEmail, isValidPassword, showAlert } from '../../utils';
 import LPTButton from '../../components/LMTButton/LMTButton';
 import '../Login/Login.scss'
 import { LAMT_API } from '../../api'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import LMTModal from '../../components/LMTModal/LMTModal';
 
 const ClientLogin = () => {
+  const navigate = useNavigate()
   const [email, setEmail] = useState({
     value: '',
     error: false,
@@ -40,12 +41,14 @@ const ClientLogin = () => {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   async function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     if (!email.error) {
       try {
-        let loginResponse = await LAMT_API.endpoints.superAdmin.clientLogin({ email: email.value, password: password.value });
+        
+        let loginResponse = await LAMT_API.endpoints.clientAdmin.login({ email: email.value, password: password.value });
         if (loginResponse?.data?.success) {
           localStorage.setItem("authToken", loginResponse?.data?.data?.token)
+          showAlert.success(loginResponse?.data?.message);
           window.location.reload()
         }
         else {

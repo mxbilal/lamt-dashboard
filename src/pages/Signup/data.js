@@ -14,13 +14,6 @@ export const validationSchema = Yup.object().shape({
   password_confirmation: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Confirm Password is required'),
-  account_number: Yup.string().required('Account Number is required'),
-  business_type: Yup.string().required('Business Type is required'),
-  sort_code: Yup.string().required('Sort Code is required'),
-  start_date: Yup.string().required('Start Date is required'),
-  vat_rate: Yup.string().required('Vat rate is required'),
-  first_heard: Yup.string().required('First heard is required'),
-  notes: Yup.string().required('Notes is required'),
 });
 
 export const initialValues = {
@@ -34,14 +27,7 @@ export const initialValues = {
   password_confirmation: '',
   address: '',
   zipcode: '',
-  phone: '',
-  account_number: '',
-  business_type: '',
-  sort_code: '',
-  start_date: '',
-  vat_rate: '',
-  first_heard: '',
-  notes: ''
+  phone: ''
 };
 export const formFields = [
   {
@@ -50,7 +36,7 @@ export const formFields = [
       { name: 'email', label: 'Email', type: 'email' },
       { name: 'first_name', label: 'First Name', type: 'text' },
       { name: 'last_name', label: 'Last Name', type: 'text' },
-      { name: 'phone', label: 'Phone', type: 'number' },
+      { name: 'phone', label: 'Phone', type: 'tel' },
       { name: 'password', label: 'Password', type: 'password' },
       { name: 'password_confirmation', label: 'Confirm Password', type: 'password' }
     ]
@@ -63,40 +49,6 @@ export const formFields = [
       { name: 'state', label: 'State', type: 'text' },
       { name: 'city', label: 'City', type: 'text' },
       { name: 'zipcode', label: 'Zip Code', type: 'number' }
-    ]
-  },
-  {
-    title: 'Business Information',
-    fields: [
-      {
-        name: 'business_type', label: 'Business Type', type: 'select', options: [
-          { value: 'solo_trader', label: 'Sole Trader' },
-          { value: 'partnership', label: 'Partnership' },
-        ]
-      },
-      { name: 'account_number', label: 'Account Number', type: 'number' },
-      { name: 'sort_code', label: 'Sort Code', type: 'number' },
-      { name: 'vat_rate', label: 'Vat Rate', type: 'number' },
-      {
-        name: 'start_date', label: 'State Date', type: 'radio', options: [
-          { value: 'before', label: 'before 6 sep' },
-          { value: 'after', label: 'after 6 sep' }
-        ]
-      },
-    ]
-  },
-  {
-    title: 'Others',
-    fields: [
-      {
-        name: 'first_heard', label: 'First Heard', type: 'select', options: [
-          { value: 'online_search', label: 'Online Search' },
-          { value: 'facebook', label: 'Facebook' },
-          { value: 'linkedin', label: 'Linkedin' },
-          { value: 'instagram', label: 'Instagram' },
-        ]
-      },
-      { name: 'notes', label: 'Notes', type: 'text' },
     ]
   }
 ];

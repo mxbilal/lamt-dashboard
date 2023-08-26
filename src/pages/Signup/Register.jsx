@@ -11,12 +11,24 @@ import LMTForm from '../../components/LMTForm/LMTForm';
 import { showAlert } from '../../utils';
 import { formFields, initialValues, validationSchema } from './data'
 import HeadBox from '../../components/HeadBox/HeadBox'
-import { useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom';
 const Register = () => {
   const navigate = useNavigate()
   async function onSubmit(event) {
-    event.preventDefault();
-    navigate('/plans')
+    try {
+      if (true) {
+        let register = await LAMT_API.endpoints.clientAdmin.register(event);
+        if(register?.data?.success){
+          showAlert.success(register?.data?.message)
+          navigate('/login')
+        } else {
+          showAlert.success(register?.response?.data?.message)
+        }
+        
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
   return (
     <div className='register-main'>

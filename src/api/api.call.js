@@ -16,7 +16,7 @@ export const LAMT_API = {
     let token = localStorage.getItem("authToken")
     if (['lamt-api'].includes(config.name)) {
       config.baseURL = base_URL;
-      config.headers.Authorization = `Bearer `;
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
@@ -78,7 +78,22 @@ export const LAMT_API = {
             "Access-Control-Allow-Origin": "*"
           }
         })
+      },
+      register(data){
+        return LAMT_API.lamtApi.request({
+          method: "POST",
+          url: '/client/register',
+          data
+        })
+      },
+      plans: {
+        getPlans(){
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: '/plans'
+          })
+        }
       }
-    }
+    },
   }
 }

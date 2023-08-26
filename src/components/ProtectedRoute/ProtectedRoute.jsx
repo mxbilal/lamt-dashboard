@@ -8,8 +8,7 @@ const unAuthRoutes = [
   'reset-password',
   "signup-type",
   "signup",
-  "two-factor",
-  'plans'
+  "two-factor"
 ]
 
 const ProtectedRoute = ({ children }) => {
