@@ -11,31 +11,12 @@ import LMTForm from '../../components/LMTForm/LMTForm';
 import { showAlert } from '../../utils';
 import { formFields, initialValues, validationSchema } from './data'
 import HeadBox from '../../components/HeadBox/HeadBox'
+import { useNavigate } from 'react-router-dom'
 const Register = () => {
-
+  const navigate = useNavigate()
   async function onSubmit(event) {
     event.preventDefault();
-    if (true) {
-      try {
-        let resetPassword = await LAMT_API.endpoints.superAdmin.resetPassword({
-          email: location.state.email,
-          password: password.value,
-          password_confirmation: confirmPassword.value,
-          token,
-        });
-        console.log("resetPassword", resetPassword)
-        if (resetPassword?.data?.success) {
-
-          navigate('/login')
-        }
-        else {
-          showAlert.failure(resetPassword?.response?.data?.message)
-        }
-
-      } catch (err) {
-        console.log(err)
-      }
-    }
+    navigate('/plans')
   }
   return (
     <div className='register-main'>
