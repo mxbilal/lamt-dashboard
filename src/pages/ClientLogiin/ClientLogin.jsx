@@ -149,8 +149,8 @@ const ClientLogin = () => {
             </Link>
           </Box>
           <Typography variant="subtitle1" gutterBottom> OR</Typography>
-          {/* <Button variant='outlined' onClick={() => setOpen(true)}> Login with Google</Button> */}
-          <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+          <Button variant='outlined' onClick={() => setOpen(true)}> Login with Google</Button>
+          {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
         </Box>
       </div>
       <LMTModal
