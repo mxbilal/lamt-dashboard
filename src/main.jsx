@@ -7,12 +7,12 @@ import { FormDataProvider } from './ContextAPI/FormDataContext';
 import { ToastContainer } from 'react-toastify';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_SIGNIN_CLIENT_ID}>
-  <FormDataProvider>
-    <React.StrictMode>
-      <App />
-      <ToastContainer />
-    </React.StrictMode>
-  </FormDataProvider>
-  // </GoogleOAuthProvider>,
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_SIGNIN_CLIENT_ID}>
+    <FormDataProvider>
+      <React.StrictMode>
+        <App />
+        <ToastContainer />
+      </React.StrictMode>
+    </FormDataProvider>
+  </GoogleOAuthProvider>,
 )

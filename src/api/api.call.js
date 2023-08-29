@@ -53,7 +53,7 @@ export const LAMT_API = {
       twoFactor(data) {
         return LAMT_API.lamtApi.request({
           method: "POST",
-          url: `/superAdmin/verify2FA`,
+          url: `/verify2FA`,
           data
         })
       }
@@ -79,7 +79,7 @@ export const LAMT_API = {
           }
         })
       },
-      register(data){
+      register(data) {
         return LAMT_API.lamtApi.request({
           method: "POST",
           url: '/client/register',
@@ -87,7 +87,7 @@ export const LAMT_API = {
         })
       },
       plans: {
-        getPlans(){
+        getPlans() {
           return LAMT_API.lamtApi.request({
             method: "GET",
             url: '/plans'

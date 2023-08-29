@@ -40,11 +40,10 @@ const ClientLogin = () => {
   };
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  async function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     if (!email.error) {
       try {
-        
         let loginResponse = await LAMT_API.endpoints.clientAdmin.login({ email: email.value, password: password.value });
         if (loginResponse?.data?.success) {
           localStorage.setItem("authToken", loginResponse?.data?.data?.token)
@@ -79,7 +78,11 @@ const ClientLogin = () => {
         console.log(err)
       }
     }
-  }
+  },
+    responseMessage = (event) => {
+      console.log(event)
+    },
+    errorMessage = (err) => console.log(err)
   const withGoogleTemplate = <>
     <TextField
       label='Email'
@@ -146,8 +149,8 @@ const ClientLogin = () => {
             </Link>
           </Box>
           <Typography variant="subtitle1" gutterBottom> OR</Typography>
-          <Button variant='outlined' onClick={() => setOpen(true)}> Login with Google</Button>
-          {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
+          {/* <Button variant='outlined' onClick={() => setOpen(true)}> Login with Google</Button> */}
+          <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
         </Box>
       </div>
       <LMTModal
