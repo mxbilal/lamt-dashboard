@@ -17,8 +17,6 @@ import Expense from '../../assets/img/expense.png'
 import BankAccount from '../../assets/img/bank-account.png'
 
 
-
-
 const Dashboard = () => {
   return (
    <>

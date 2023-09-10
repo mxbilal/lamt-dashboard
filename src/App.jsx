@@ -27,6 +27,7 @@ import RegisterType from './pages/Signup/RegisterType'
 import Register from './pages/Signup/Register'
 import MultiStep from './pages/Signup/MultiStep'
 import Plans from './pages/Plans/Plans'
+import Profile from './pages/Profile/profile'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -46,6 +47,7 @@ function App() {
             <Route path='/signup-type' element={<ProtectedRoute children={<RegisterType />} />} />
             <Route path='/signup' element={<ProtectedRoute children={<Register />} />} />
             <Route path='/plans' element={<ProtectedRoute children={<Plans />} />} />
+            <Route path='/profile' element={<ProtectedRoute children={<Profile />} />} />
             <Route path='/signup/:step' element={<ProtectedRoute children={<MultiStep />} />} />
             <Route path='/two-factor' element={<ProtectedRoute children={<TwoFactor />} />} />
             <Route path='/transaction' element={<ProtectedRoute> <Transaction /> </ProtectedRoute>} />
