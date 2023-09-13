@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard/Dashboard'
@@ -30,10 +30,9 @@ import Plans from './pages/Plans/Plans'
 import Profile from './pages/Profile/profile'
 
 function App() {
-  const [count, setCount] = useState(0)
-  useEffect(() => {
+  useLayoutEffect(() => {
     LAMT_API.init()
-  }, [])
+  })
   return (
     <>
       <div className='app'>
@@ -52,8 +51,8 @@ function App() {
             <Route path='/two-factor' element={<ProtectedRoute children={<TwoFactor />} />} />
             <Route path='/transaction' element={<ProtectedRoute> <Transaction /> </ProtectedRoute>} />
             <Route path='/add-connection' element={<AddConnection />} />
-            <Route path='/expenses' element={<Expenses />} />
-            <Route path='/add-expense' element={<PocketExpense />} />
+            <Route path='/expenses' element={<ProtectedRoute><Expenses /> </ProtectedRoute>} />
+            <Route path='/add-expense/:id' element={<PocketExpense />} />
             <Route path='/dividend' element={<Dividend />} />
             <Route path='/pay-dividend' element={<DividendPayment />} />
             <Route path='/payroll' element={<Payroll />} />

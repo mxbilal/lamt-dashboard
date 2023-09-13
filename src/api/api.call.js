@@ -92,8 +92,37 @@ export const LAMT_API = {
             method: "GET",
             url: '/plans'
           })
+        },
+      },
+
+      expense: {
+        getExpenses() {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: '/expenses'
+          })
+        },
+        getExpenseById(id) {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: `/expenses/${id}`
+          })
+        },
+        addExpenses(data) {
+          return LAMT_API.lamtApi.request({
+            method: "POST",
+            url: '/expenses',
+            data
+          })
+        },
+        deleteExpense(id) {
+          return LAMT_API.lamtApi.request({
+            method: "DELETE",
+            url: `/expenses/${id}`
+          })
         }
       }
+
     },
   }
 }

@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Uncategorised from "../../assets/img/uncategorised.png";
+import { LAMT_API } from "../../api";
+import { showAlert } from "../../utils";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PocketExpense = () => {
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
+  const { id } = useParams()
+
+  const handleDelete = async () => {
+    const response = await LAMT_API.endpoints.clientAdmin.expense.deleteExpense(id)
+    console.log("rr", response)
+    if (response.status === 200) {
+      showAlert.success(response?.data?.message)
+      navigate('/expenses')
+    }
+    else showAlert.failure(response?.data?.message)
+  }
   return (
     <>
       <div className="main-area">
@@ -18,13 +34,23 @@ const PocketExpense = () => {
           <div>
             <Formik
               initialValues={{
-                firstName: "",
-                lastName: "",
-                email: "",
               }}
               onSubmit={async (values) => {
-                await new Promise((r) => setTimeout(r, 500));
-                alert(JSON.stringify(values, null, 2));
+                setLoading(true)
+                var formData = new FormData()
+                formData.append("name", values.description)
+                formData.append("value", values.value)
+                formData.append("status", 1)
+                formData.append("dated", values.datetime)
+                formData.append("vat_rate", '0.2')
+
+                let response = await LAMT_API.endpoints.clientAdmin.expense.addExpenses(formData)
+                setLoading(false)
+                if (response.status === 200) {
+                  showAlert.success(response?.data?.message)
+                  navigate('/expenses')
+                }
+                else showAlert.failure(response?.data?.message ?? "Failed!")
               }}
             >
               <Form>
@@ -43,7 +69,6 @@ const PocketExpense = () => {
                           />
                         </div>
                       </div>
-
                       <div className="pefi-area">
                         <div className="labels">
                           <label htmlFor="datetime">Date & Time</label>
@@ -116,45 +141,45 @@ const PocketExpense = () => {
                       <p className="vr-para">VAT Rate</p></div>
                     <div role="group" aria-labelledby="my-radio-group" className="radio-row">
                       <label>
-                        <Field type="radio" name="picked" value="One" />
+                        <Field type="radio" name="picked" value={'1'} />
                         Standard Rate
                       </label>
                       <label>
-                        <Field type="radio" name="picked" value="Two" />
+                        <Field type="radio" name="picked" value={'2'} />
                         Exempt
                       </label>
 
                       <label>
-                        <Field type="radio" name="picked" value="Three" />
+                        <Field type="radio" name="picked" value={'3'} />
                         Reduced Rate (12.5%)
                       </label>
 
                       <label>
-                        <Field type="radio" name="picked" value="Four" />
+                        <Field type="radio" name="picked" value={'4'} />
                         Reduced Rate
                       </label>
 
                       <label>
-                        <Field type="radio" name="picked" value="Four" />
+                        <Field type="radio" name="picked" value={'5'} />
                         No VAT (Outside Scope)
                       </label>
                     </div>
 
                     <div role="group" aria-labelledby="my-radio-group" className="radio-row-2">
                       <label>
-                        <Field type="radio" name="picked" value="Five" />
+                        <Field type="radio" name="picked" value={'6'} />
                         Reverse Charge (20%)
                       </label>
                       <label>
-                        <Field type="radio" name="picked" value="Six" />
+                        <Field type="radio" name="picked" value={'7'} />
                         Zero Rate
                       </label>
 
                     </div>
 
                     <div className="form-button">
-                      <button className="btn-save">Save Changes</button>
-                      <button className="btn-delete">Delete Expense</button>
+                      <button type="submit" className="btn-save" disabled={loading}>Save Changes</button>
+                      <button type="button" className="btn-delete" disabled={id === 0} onClick={handleDelete}>Delete Expense</button>
                     </div>
                   </div>
                 </div>
