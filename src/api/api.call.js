@@ -92,7 +92,7 @@ export const LAMT_API = {
             method: "GET",
             url: '/plans'
           })
-        },
+        }
       },
 
       expense: {
@@ -122,7 +122,7 @@ export const LAMT_API = {
           })
         }
       }
-
     },
+   
   }
 }

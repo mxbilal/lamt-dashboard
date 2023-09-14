@@ -11,6 +11,7 @@ import { LAMT_API } from '../../api'
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from 'react-router-dom';
 import LMTLoader from '../../components/LMTLoader/LMTLoader';
+import TopLogoImage from '../../assets/img/login-logo.png'
 
 const ForgetPassword = () => {
   const navigate = useNavigate()
@@ -53,12 +54,13 @@ const ForgetPassword = () => {
       {loading ? <LMTLoader /> : <div className='forget-container'>
         <Box className='forget-inner'>
           <Box className="forget-head">
-            <img width={50} height={50} className='logo' src='/favicon.png' />
-            <Typography variant="h4" gutterBottom> Forgot Your Password? </Typography>
-            <Typography className='text2' variant="subtitle1" gutterBottom> Enter your email address and we will send you instructions to reset your password. </Typography>
+            <img width={200} className='logo' src={TopLogoImage} />
+            <Typography variant="h6" gutterBottom> Forgot Password? </Typography>
+           
           </Box>
           <form onSubmit={handleSubmit}>
             <TextField
+              className='forget-password-input'
               label='Email'
               value={email.value}
               onChange={handleEmailChange}
@@ -67,10 +69,10 @@ const ForgetPassword = () => {
               error={email.error}
               helperText={!email.error ? '' : 'Invalid email format'}
             />
-            <LPTButton disabled={loading} content="Continue" type={"submit"} />
+            <LPTButton disabled={loading} content="Send Code" type={"submit"} />
           </form>
-          <Box className='first-login'>
-            <Link to={'/login'} underline="none">
+          <Box className='first-login back-to-login'>
+            <Link to={'/login'} underline="none" className='btn-btl'>
               Back to Login
             </Link>
           </Box>

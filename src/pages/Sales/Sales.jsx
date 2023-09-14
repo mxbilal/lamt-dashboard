@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import PokcetExpense from "../../assets/img/pocket-expense.png";
@@ -8,6 +9,7 @@ import ImvestmentExpense from "../../assets/img/investment-expense.png";
 import PhoneExpense from "../../assets/img/phone-expense.png";
 
 const Sales = () => {
+  const navigate = useNavigate()
   return (
     <>
       <div className="main-area">
@@ -21,7 +23,7 @@ const Sales = () => {
               <div className="es-inner">
                 <div className="esi-top">
                   <img src={PokcetExpense} alt="" />
-                  <p className="esit-heading">Add out-of-pocket expense</p>
+                  <p className="esit-heading" onClick={() => navigate('/add-sales-invoice')}>Add out-of-pocket expense</p>
                 </div>
 
                 <div className="esi-content">

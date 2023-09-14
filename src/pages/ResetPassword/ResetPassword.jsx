@@ -14,6 +14,7 @@ import { LAMT_API } from '../../api'
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LMTLoader from '../../components/LMTLoader/LMTLoader';
+import TopLogoImage from '../../assets/img/login-logo.png'
 
 const ResetPassword = () => {
   const location = useLocation()
@@ -77,9 +78,8 @@ const ResetPassword = () => {
       {loading ? <LMTLoader /> : <div className='login-container'>
         <Box className='login-inner'>
           <Box className="login-head">
-            <img width={50} height={50} className='logo' src='/favicon.png' />
-            <Typography variant="h4" gutterBottom> Welcome </Typography>
-            <Typography variant="subtitle1" gutterBottom> Please Login to continue to dashboard </Typography>
+            <img width={200} className='logo' src={TopLogoImage} />
+            <Typography variant="h6" gutterBottom> Please Enter the Code </Typography>
           </Box>
           <form onSubmit={handleSubmit}>
 
@@ -127,13 +127,15 @@ const ResetPassword = () => {
               error={confirmPassword.error}
               helperText={!confirmPassword.error ? '' : 'Both Password must be same!'}
             />
-            <LPTButton content="Continue" type={"submit"} />
+           
+            <LPTButton content="Submit" type={"submit"} style={{margin:"5% 0"}}/>
+           
           </form>
-          <Box className='first-login'>
-            <Link to={'/login'} underline="none">
+          {/* <Box className='first-login back-to-reset-login'>
+            <Link to={'/login'} underline="none" className='btn-reset'>
               Back to Login
             </Link>
-          </Box>
+          </Box> */}
         </Box>
       </div>}?
     </div>

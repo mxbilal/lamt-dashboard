@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard/Dashboard'
@@ -27,12 +27,13 @@ import RegisterType from './pages/Signup/RegisterType'
 import Register from './pages/Signup/Register'
 import MultiStep from './pages/Signup/MultiStep'
 import Plans from './pages/Plans/Plans'
-import Profile from './pages/Profile/profile'
+import AddSalesInvoice from './pages/Sales/AddSalesInvoice'
 
 function App() {
-  useLayoutEffect(() => {
+  const [count, setCount] = useState(0)
+  useEffect(() => {
     LAMT_API.init()
-  })
+  }, [])
   return (
     <>
       <div className='app'>
@@ -46,23 +47,23 @@ function App() {
             <Route path='/signup-type' element={<ProtectedRoute children={<RegisterType />} />} />
             <Route path='/signup' element={<ProtectedRoute children={<Register />} />} />
             <Route path='/plans' element={<ProtectedRoute children={<Plans />} />} />
-            <Route path='/profile' element={<ProtectedRoute children={<Profile />} />} />
             <Route path='/signup/:step' element={<ProtectedRoute children={<MultiStep />} />} />
             <Route path='/two-factor' element={<ProtectedRoute children={<TwoFactor />} />} />
-            <Route path='/transaction' element={<ProtectedRoute> <Transaction /> </ProtectedRoute>} />
-            <Route path='/add-connection' element={<AddConnection />} />
-            <Route path='/expenses' element={<ProtectedRoute><Expenses /> </ProtectedRoute>} />
-            <Route path='/add-expense/:id' element={<PocketExpense />} />
-            <Route path='/dividend' element={<Dividend />} />
-            <Route path='/pay-dividend' element={<DividendPayment />} />
-            <Route path='/payroll' element={<Payroll />} />
-            <Route path='/refer-friends' element={<ReferFriends />} />
-            <Route path='/taxes' element={<Taxes />} />
-            <Route path='/market-perks' element={<MarketPerks />} />
-            <Route path='/purchases' element={<Purchases />} />
-            <Route path='/sales' element={<Sales />} />
-            <Route path='/reports' element={<Reports />} />
-            <Route path='/settings' element={<Settings />} />
+            <Route path='/transaction' element={<ProtectedRoute children={<Transaction />} />} />
+            <Route path='/add-connection' element={<ProtectedRoute children={<AddConnection />} />} />
+            <Route path='/expenses' element={<ProtectedRoute children={<Expenses />} />} />
+            <Route path='/add-expense/:id' element={<ProtectedRoute children={<PocketExpense />} />} />
+            <Route path='/dividend' element={<ProtectedRoute children={<Dividend />} />} />
+            <Route path='/pay-dividend' element={<ProtectedRoute children={<DividendPayment />} />} />
+            <Route path='/payroll' element={<ProtectedRoute children={<Payroll />} />} />
+            <Route path='/refer-friends' element={<ProtectedRoute children={<ReferFriends />} />} />
+            <Route path='/taxes' element={<ProtectedRoute children={<Taxes />} />} />
+            <Route path='/market-perks' element={<ProtectedRoute children={<MarketPerks />} />} />
+            <Route path='/purchases' element={<ProtectedRoute children={<Purchases />} />} />
+            <Route path='/sales' element={<ProtectedRoute children={<Sales />} />} />
+            <Route path='/add-sales-invoice' element={<ProtectedRoute children={<AddSalesInvoice />} />} />
+            <Route path='/reports' element={<ProtectedRoute children={<Reports />} />} />
+            <Route path='/settings' element={<ProtectedRoute children={<Settings />} />} />
           </Routes>
         </BrowserRouter>
       </div>

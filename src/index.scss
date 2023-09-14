@@ -9,10 +9,6 @@ body {
   padding: 0;
   font-family: "Open Sans", sans-serif;
 
-  .cursor-p {
-    cursor: pointer;
-  }
-
   .main-area {
     display: flex;
 
@@ -626,7 +622,7 @@ body {
 
             .currency {
               padding: 8px 12px;
-              height: 25px;
+              height: 35px;
               margin: 10px 10px;
               background: #f5f6f8;
               border: none;
@@ -654,7 +650,7 @@ body {
               align-items: center;
               background: #f5f6f8;
               width: 306px;
-              height: 66px;
+              height: 100px;
               justify-content: space-between;
               padding: 10px;
               border-radius: 6px;
@@ -666,7 +662,7 @@ body {
               }
 
               .uncat-heading-line {
-                padding: 18px 95px;
+                padding: 18px 85px;
               }
             }
           }
@@ -1544,6 +1540,7 @@ body {
     text-decoration: none;
     color: $basic_text_color;
   }
+  
 }
 
 @mixin flex($direction, $justify, $gap, $align) {

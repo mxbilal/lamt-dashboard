@@ -4,11 +4,10 @@ import Profile from '../../assets/img/profile.png'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Popover, Typography } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate()
+
   const handleClick = (event) => {
     setOpen(event.currentTarget);
   };
@@ -22,8 +21,6 @@ const Navbar = () => {
     window.location.reload()
     handleClose();
   };
-
-  const gotoProfile = () => navigate('/profile')
   return (
     <div className='top-navbar'>
       <div className="navbar-section">
@@ -33,7 +30,7 @@ const Navbar = () => {
 
         <div className="right-section">
           <NotificationsNoneIcon />
-          <div className="profile-img" onClick={gotoProfile}>
+          <div className="profile-img">
             <img src={Profile} alt="" />
           </div>
           <div className="profile-heading">

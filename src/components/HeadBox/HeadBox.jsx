@@ -1,11 +1,12 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
+import HeaderLogoLAMT from '../../assets/img/login-logo.png'
 
 const HeadBox = ({ title }) => {
   return (
     <Box className="register-head">
-      <img width={50} height={50} className='logo' src='/favicon.png' />
-      {title && <Typography variant="h4" gutterBottom> {title} </Typography>}
+      <img width={200} className='logo' src={HeaderLogoLAMT} />
+      {title && <Typography variant="h5" gutterBottom> {title} </Typography>}
     </Box>
   )
 }

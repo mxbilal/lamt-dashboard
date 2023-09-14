@@ -28,8 +28,12 @@
   padding: 20px;
 
   .register-container {
-    padding: 20px;
+    // padding: 20px;
     box-shadow: $box_shadow_main;
+    background: white;
+    border-radius: 12px;
+    margin: auto 25%;
+    padding: 25px 50px;
 
     .register-inner {
       @include flex(column, '', 10px, '');
@@ -41,3 +45,4 @@
     }
   }
 }
+

@@ -4,8 +4,13 @@ import Navbar from "../../components/Navbar/Navbar";
 import DividendPay from '../../assets/img/invoice.png'
 import DividendAvailable from '../../assets/img/dividend-available.png'
 import PayTax from '../../assets/img/pay-tax.png'
+import { useNavigate } from 'react-router-dom';
 
 const Dividend = () => {
+  const navigate = useNavigate();
+  const payDivident = () =>{
+  navigate('/pay-dividend')
+  }
   return (
     <>
     <div className="main-area">
@@ -17,7 +22,7 @@ const Dividend = () => {
         <div className="dividend-area">
             <div className="da-start">
                 <div className="da-inner">
-                    <div className="dai-top">
+                    <div className="dai-top" onClick={payDivident} style={{cursor:'pointer'}}>
                         <img src={DividendPay} alt="" />
                         <p className='dait-heading'>Pay yourself a dividend</p>
                     </div>
