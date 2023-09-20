@@ -121,6 +121,34 @@ export const LAMT_API = {
             url: `/expenses/${id}`
           })
         }
+      },
+
+      sales: {
+        getSales() {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: '/sales'
+          })
+        },
+        getSalesById(id) {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: `/sales/${id}`
+          })
+        },
+        addSales(data) {
+          return LAMT_API.lamtApi.request({
+            method: "POST",
+            url: '/sales',
+            data
+          })
+        },
+        deleteSales(id) {
+          return LAMT_API.lamtApi.request({
+            method: "DELETE",
+            url: `/sales/${id}`
+          })
+        }
       }
     },
    
