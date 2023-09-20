@@ -21,7 +21,7 @@ const Sales = () => {
         let data = response?.data?.data
         console.log("rdd", data)
 
-        setSalesList([...data['Invoices'], ...data['Overdue-invoices']])
+        setSalesList([...data['Invoices']])
       }
       else showAlert.failure(response?.data?.message ?? "Failed!")
     }

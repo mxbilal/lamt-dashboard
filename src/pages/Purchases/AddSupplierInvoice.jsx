@@ -10,17 +10,17 @@ import { LAMT_API } from "../../api";
 import { showAlert } from "../../utils";
 import { useNavigate, useParams } from "react-router-dom";
 
-const AddSalesInvoice = () => {
+const AddSupplierInvoice = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const { user } = JSON?.parse(localStorage?.getItem("userInfo"))
   const { id } = useParams()
   const handleDelete = async () => {
-    const response = await LAMT_API.endpoints.clientAdmin.sales.deleteSales(id)
+    const response = await LAMT_API.endpoints.clientAdmin.purchase.deleteSupplierInvoice(id)
     console.log("rr", response)
     if (response.status === 200) {
       showAlert.success(response?.data?.message)
-      navigate('/sales')
+      navigate('/purchases')
     }
     else showAlert.failure(response?.data?.message)
   }
@@ -44,19 +44,20 @@ const AddSalesInvoice = () => {
                 const file = fileInput.files[0];
                 setLoading(true)
                 var formData = new FormData()
-                formData.append("name", values.description)
+                formData.append("name", values.reference)
                 formData.append("value", values.value)
                 formData.append("status", 1)
                 formData.append("dated", values.datetime)
+                formData.append('issue_date', values.dateofInvoice);
                 formData.append("invoice_for_user_id", 2)
                 formData.append("vat_rate", '0.2')
                 formData.append("amount", '500')
                 formData.append("attachments", file)
-                let response = await LAMT_API.endpoints.clientAdmin.sales.addSales(formData)
+                let response = await LAMT_API.endpoints.clientAdmin.purchase.addSupplierInvoice(formData)
                 setLoading(false)
                 if (response.status === 200) {
                   showAlert.success(response?.data?.message)
-                  navigate('/sales')
+                  navigate('/purchases')
                 }
                 else showAlert.failure(response?.data?.message ?? "Failed!")
               }}
@@ -82,13 +83,13 @@ const AddSalesInvoice = () => {
                     <div className="pefi-area-main">
                       <div className="pefi-area">
                         <div className="labels">
-                          <label htmlFor="description">Date of Invoice</label>
+                          <label htmlFor="dateofInvoice">Date of Invoice</label>
                         </div>
                         <div className="fields">
                           <Field
-                            id="description"
-                            name="description"
-                            placeholder="Description"
+                            id="dateofInvoice"
+                            name="dateofInvoice"
+                            placeholder="Date of Invoice"
                           />
                         </div>
                       </div>
@@ -122,12 +123,12 @@ const AddSalesInvoice = () => {
                     <div className="pefi-area-main">
                       <div className="pefi-area">
                         <div className="labels">
-                          <label htmlFor="description">Description</label>
+                          <label htmlFor="reference">Reference</label>
                         </div>
                         <div className="fields">
                           <Field
-                            id="description"
-                            name="description"
+                            id="reference"
+                            name="reference"
                             style={{ width: 550, padding: 30 }}
                           />
                         </div>
@@ -167,7 +168,7 @@ const AddSalesInvoice = () => {
                     </div>
                     <div className="form-button">
                       <button type="submit" className="btn-save" disabled={loading}>Save Invoice</button>
-                      <button type="button" className="btn-delete" disabled={id === 0} onClick={handleDelete}>Delete Invoice</button>
+                      <button type="button" className="btn-delete" disabled={id === "0"} onClick={handleDelete}>Delete Invoice</button>
                     </div>
                   </div>
                 </div>
@@ -180,4 +181,4 @@ const AddSalesInvoice = () => {
   );
 };
 
-export default AddSalesInvoice;
+export default AddSupplierInvoice;

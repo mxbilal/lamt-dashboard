@@ -28,7 +28,7 @@ import Register from './pages/Signup/Register'
 import MultiStep from './pages/Signup/MultiStep'
 import Plans from './pages/Plans/Plans'
 import AddSalesInvoice from './pages/Sales/AddSalesInvoice'
-
+import AddSupplierInvoice from './pages/Purchases/AddSupplierInvoice'
 function App() {
   const [count, setCount] = useState(0)
   useEffect(() => {
@@ -64,6 +64,7 @@ function App() {
             <Route path='/add-sales-invoice/:id' element={<ProtectedRoute children={<AddSalesInvoice />} />} />
             <Route path='/reports' element={<ProtectedRoute children={<Reports />} />} />
             <Route path='/settings' element={<ProtectedRoute children={<Settings />} />} />
+            <Route path='/add-supplier-invoice/:id' element={<ProtectedRoute children={<AddSupplierInvoice />} />} />
           </Routes>
         </BrowserRouter>
       </div>

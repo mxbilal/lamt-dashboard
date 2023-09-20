@@ -149,6 +149,34 @@ export const LAMT_API = {
             url: `/sales/${id}`
           })
         }
+      },
+
+      purchase: {
+        getPurchase() {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: '/purchases'
+          })
+        },
+        getSalesById(id) {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: `/purchases/${id}`
+          })
+        },
+        addSupplierInvoice(data) {
+          return LAMT_API.lamtApi.request({
+            method: "POST",
+            url: '/purchases',
+            data
+          })
+        },
+        deleteSupplierInvoice(id) {
+          return LAMT_API.lamtApi.request({
+            method: "DELETE",
+            url: `/purchases/${id}`
+          })
+        }
       }
     },
    
