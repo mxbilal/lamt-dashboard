@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import ReferFriend from "../../assets/img/refer-friend.png";
 import Navbar from "../../components/Navbar/Navbar";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Uncategorised from "../../assets/img/uncategorised.png";
@@ -11,9 +12,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const AddSalesInvoice = () => {
   const navigate = useNavigate()
+  const { user } = JSON.parse(localStorage.getItem("userInfo"))
 
-
-  
   return (
     <>
       <div className="main-area">
@@ -32,6 +32,21 @@ const AddSalesInvoice = () => {
               <Form>
                 <div className="pocketExpense-form">
                   <div className="pef-inner">
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '30px',
+                        marginBottom: '20px'
+
+                      }}
+                    >
+                      <img src={ReferFriend} alt="" width={'50px'} height={'50px'} />
+                      <div>
+                        <p style={{ lineHeight: '0', fontWeight: 'bold' }}>{user?.first_name + " " + user?.last_name}</p>
+                        <p style={{ lineHeight: '0.2' }}>{user?.email}</p>
+                      </div>
+                    </div>
                     <div className="pefi-area-main">
                       <div className="pefi-area">
                         <div className="labels">
@@ -71,7 +86,7 @@ const AddSalesInvoice = () => {
                         </div>
                       </div>
                     </div>
-                   
+
                     <div className="pefi-area-main">
                       <div className="pefi-area">
                         <div className="labels">
@@ -81,7 +96,7 @@ const AddSalesInvoice = () => {
                           <Field
                             id="description"
                             name="description"
-                            style={{width:550, padding:30}}
+                            style={{ width: 550, padding: 30 }}
                           />
                         </div>
                       </div>
@@ -95,7 +110,7 @@ const AddSalesInvoice = () => {
                             id="attachments"
                             name="attachments"
                             placeholder="+ Attachments"
-                            style={{width:550, marginTop:30, textAlign:"center", padding:30}}
+                            style={{ width: 550, marginTop: 30, textAlign: "center", padding: 30 }}
                           />
                         </div>
                       </div>
@@ -104,19 +119,19 @@ const AddSalesInvoice = () => {
 
                     <div className="vat-rate">
                       <p>Is this invoice a refund being issued to you by your Client?</p></div>
-                    
-                      <div className="vat-rate">
-                      <p className="vr-para" style={{paddingTop:20, paddingBottom:20, borderBottom:"1px solid #D9D9D9CC"}}>Line Item</p>
-                      </div>
 
-                      <div className="vat-rate">
-                      <p className="vr-para" style={{paddingTop:20, paddingBottom:30, borderBottom:"1px solid #D9D9D9CC", textAlign:"center"}}>+ Add new line item</p>
-                      </div>
-                      <div className="total-sales" style={{textAlign:'right'}}>
-                        <p>Subtotal: <span style={{fontWeight:"bold"}}>£100.00</span></p>
-                        <p>VAT: <span style={{fontWeight:"bold"}}>£100.00</span></p>
-                        <p>Total:<span style={{fontWeight:"bold"}}>£120.00</span></p>
-                      </div>
+                    <div className="vat-rate">
+                      <p className="vr-para" style={{ paddingTop: 20, paddingBottom: 20, borderBottom: "1px solid #D9D9D9CC" }}>Line Item</p>
+                    </div>
+
+                    <div className="vat-rate">
+                      <p className="vr-para" style={{ paddingTop: 20, paddingBottom: 30, borderBottom: "1px solid #D9D9D9CC", textAlign: "center" }}>+ Add new line item</p>
+                    </div>
+                    <div className="total-sales" style={{ textAlign: 'right' }}>
+                      <p>Subtotal: <span style={{ fontWeight: "bold" }}>£100.00</span></p>
+                      <p>VAT: <span style={{ fontWeight: "bold" }}>£100.00</span></p>
+                      <p>Total:<span style={{ fontWeight: "bold" }}>£120.00</span></p>
+                    </div>
                     <div className="form-button">
                       <button type="submit" className="btn-save" >Save Invoice</button>
                       <button type="button" className="btn-delete">Delete Invoice</button>

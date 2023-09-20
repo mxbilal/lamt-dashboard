@@ -61,7 +61,7 @@ function App() {
             <Route path='/market-perks' element={<ProtectedRoute children={<MarketPerks />} />} />
             <Route path='/purchases' element={<ProtectedRoute children={<Purchases />} />} />
             <Route path='/sales' element={<ProtectedRoute children={<Sales />} />} />
-            <Route path='/add-sales-invoice' element={<ProtectedRoute children={<AddSalesInvoice />} />} />
+            <Route path='/add-sales-invoice/:id' element={<ProtectedRoute children={<AddSalesInvoice />} />} />
             <Route path='/reports' element={<ProtectedRoute children={<Reports />} />} />
             <Route path='/settings' element={<ProtectedRoute children={<Settings />} />} />
           </Routes>

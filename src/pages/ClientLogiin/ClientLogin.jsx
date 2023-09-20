@@ -49,6 +49,7 @@ const ClientLogin = () => {
         let loginResponse = await LAMT_API.endpoints.clientAdmin.login({ email: email.value, password: password.value });
         if (loginResponse?.data?.success) {
           localStorage.setItem("authToken", loginResponse?.data?.data?.token)
+          localStorage.setItem("userInfo", JSON.stringify(loginResponse?.data?.data))
           showAlert.success(loginResponse?.data?.message);
           window.location.reload()
         }
@@ -141,7 +142,7 @@ const ClientLogin = () => {
             <Link to={'/forget-password'} underline="none" className='forget-password-link'>
               Forget Password?
             </Link>
-            <LPTButton content="Continue" type={"submit"} className='btn-login-submit'/>
+            <LPTButton content="Continue" type={"submit"} className='btn-login-submit' />
           </form>
           <Box className='first-login'>
             <Typography variant="subtitle1" gutterBottom> Don't have an account? </Typography>
