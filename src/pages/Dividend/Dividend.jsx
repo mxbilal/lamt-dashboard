@@ -23,12 +23,12 @@ const Dividend = () => {
             <div className="da-start">
                 <div className="da-inner">
                     <div className="dai-top" onClick={payDivident} style={{cursor:'pointer'}}>
-                        <img src={DividendPay} alt="" />
+                        <img src={DividendPay} alt="Dividend-Pay" />
                         <p className='dait-heading'>Pay yourself a dividend</p>
                     </div>
                     <div className="dai-content">
                         <div className="daic-dividend">
-                        <img src={DividendAvailable} alt="" />
+                        <img src={DividendAvailable} alt="Dividend-Available" />
                         <div className="daicd-inner">
                         <p className='divid-text'>Dividends paid 22/23</p>
                         <p className='divid-price'>£150.00</p>
@@ -36,7 +36,7 @@ const Dividend = () => {
                         </div>
 
                         <div className="daic-tax-to-set">
-                        <img src={PayTax} alt="" />
+                        <img src={PayTax} alt="Pay-Tax" />
                         <div className="daicd-inner">
                         <p className='divid-text'>Personal tax to set aside 22/23</p>
                         <p className='divid-price'>£400.00</p>

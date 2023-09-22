@@ -28,7 +28,13 @@ import Register from './pages/Signup/Register'
 import MultiStep from './pages/Signup/MultiStep'
 import Plans from './pages/Plans/Plans'
 import AddSalesInvoice from './pages/Sales/AddSalesInvoice'
-import AddSupplierInvoice from './pages/Purchases/AddSupplierInvoice'
+import AddSuplierInvoice from './pages/Purchases/AddSuplierInvoice'
+import AddClient from './pages/Sales/AddClient'
+import AddClientForm from './pages/Sales/AddClientForm'
+import AddProduct from './pages/Sales/AddProduct'
+import AddSuplier from './pages/Purchases/AddSuplier'
+
+
 function App() {
   const [count, setCount] = useState(0)
   useEffect(() => {
@@ -60,11 +66,15 @@ function App() {
             <Route path='/taxes' element={<ProtectedRoute children={<Taxes />} />} />
             <Route path='/market-perks' element={<ProtectedRoute children={<MarketPerks />} />} />
             <Route path='/purchases' element={<ProtectedRoute children={<Purchases />} />} />
+            <Route path='/add-suplier-invoice' element={<ProtectedRoute children={<AddSuplierInvoice />} />} />
+            <Route path='/add-suplier' element={<ProtectedRoute children={<AddSuplier />} />} />
             <Route path='/sales' element={<ProtectedRoute children={<Sales />} />} />
-            <Route path='/add-sales-invoice/:id' element={<ProtectedRoute children={<AddSalesInvoice />} />} />
+            <Route path='/add-sales-invoice' element={<ProtectedRoute children={<AddSalesInvoice />} />} />
+            <Route path='/add-client-sales' element={<ProtectedRoute children={<AddClient />} />} />
+            <Route path='/add-client' element={<ProtectedRoute children={<AddClientForm />} />} />
+            <Route path='/add-new-products' element={<ProtectedRoute children={<AddProduct />} />} />
             <Route path='/reports' element={<ProtectedRoute children={<Reports />} />} />
             <Route path='/settings' element={<ProtectedRoute children={<Settings />} />} />
-            <Route path='/add-supplier-invoice/:id' element={<ProtectedRoute children={<AddSupplierInvoice />} />} />
           </Routes>
         </BrowserRouter>
       </div>

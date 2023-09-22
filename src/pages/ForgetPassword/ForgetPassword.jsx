@@ -54,7 +54,7 @@ const ForgetPassword = () => {
       {loading ? <LMTLoader /> : <div className='forget-container'>
         <Box className='forget-inner'>
           <Box className="forget-head">
-            <img width={200} className='logo' src={TopLogoImage} />
+            <img width={200} className='logo' src={TopLogoImage} alt='logo'/>
             <Typography variant="h6" gutterBottom> Forgot Password? </Typography>
            
           </Box>

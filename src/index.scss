@@ -515,19 +515,25 @@ body {
 
     .es-area {
       position: relative;
+      margin: 0 30% 0 3%;
+      background: white;
+      border-radius: 10px;
 
+      .p-tabview-nav-container{
+        padding: 0 20px;
+      }
       .es-inner {
         position: relative;
         background: white;
-        margin: 0 25% 0% 3%;
+        // margin: 0 25% 0% 3%;
         border-radius: 13px;
-
+        
         .esi-top {
           display: flex;
           align-items: center;
           padding: 20px;
           border-bottom: 1px solid #d9d9d9cc;
-          margin: 0% 15% 0% 3%;
+          // margin: 0% 15% 0% 3%;
 
           img {
             width: 54px;
@@ -538,6 +544,7 @@ body {
             font-size: 14px;
             font-weight: bold;
             padding-left: 15px;
+            cursor: pointer;
           }
         }
 
@@ -545,7 +552,7 @@ body {
           display: flex;
           align-items: center;
           padding: 10px 20px;
-          margin: 0% 15% 0% 3%;
+          // margin: 0% 15% 0% 3%;
 
           img {
             width: 54px;
@@ -604,7 +611,16 @@ body {
             font-size: 14px;
             font-weight: 700;
           }
-
+          .numberOfDays{
+            width: 305px;
+            height: 41px;
+            margin: 10px auto;
+            background: #f5f6f8;
+            border: none;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border-radius: 6px;
+            padding-left: 15px;
+          }
           input {
             width: 305px;
             height: 41px;
@@ -634,6 +650,67 @@ body {
         }
       }
 
+      .pefi-area-main-2 {
+        display: flex;
+        width: 100%;
+        // justify-content: space-between;
+
+        .pefi-area {
+          position: relative;
+          width: 50%;
+
+          label {
+            font-size: 14px;
+            font-weight: 700;
+          }
+          .numberOfDays{
+            width: 95%;
+            height: 41px;
+            margin: 10px auto;
+            background: #f5f6f8;
+            border: none;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border-radius: 6px;
+            padding-left: 15px;
+          }
+          .currencyForClient{
+            width: 100%;
+            height: 41px;
+            margin: 10px auto;
+            background: #f5f6f8;
+            border: none;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border-radius: 6px;
+            padding-left: 15px;
+          }
+          input {
+            width: 305px;
+            height: 41px;
+            margin: 10px auto;
+            background: #f5f6f8;
+            border: none;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border-radius: 6px;
+            padding-left: 15px;
+          }
+
+          .inner-field {
+            display: flex;
+            align-items: center;
+
+            .currency {
+              padding: 8px 12px;
+              height: 35px;
+              margin: 10px 10px;
+              background: #f5f6f8;
+              border: none;
+              box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+              border-radius: 8px;
+              // padding-left: 15px;
+            }
+          }
+        }
+      }
       .form-center {
         position: relative;
 
@@ -697,7 +774,27 @@ body {
       .radio-row {
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
+        gap: 10px;
 
+        input[type="radio"] {
+          accent-color: gray !important;
+        }
+        .radio-row-up{
+          display: flex;
+          justify-content: space-between;
+        }
+        .radio-row-down{
+          display: flex;
+          justify-content: flex-start;
+          gap: 40px;
+        }
+      }
+      .radio-rows{
+        position: relative;
+        label{
+          margin-right: 50px;
+        }
         input[type="radio"] {
           accent-color: gray !important;
         }
@@ -1369,6 +1466,80 @@ body {
     }
   }
 
+  // =========================================== Start Purchases Page Style ===========================================
+  .purchases-section {
+    position: relative;
+
+    .purchases-area {
+      margin: 0 25% 0 3%;
+
+      .purchases-inner {
+        background: white;
+        border-radius: 7px;
+
+        .p-tabview-nav-container {
+          padding: 0 20px;
+        }
+
+        .purchases-content {
+          display: flex;
+          align-items: center;
+          padding-bottom: 20px;
+          border-bottom: 2px solid #D9D9D9CC;
+
+          .purchase-add-icon {
+            width: 8%;
+          }
+
+          .purchases-inner-content {
+            padding-left: 25px;
+            font-weight: bold;
+          }
+        }
+
+        .purchases-Overdue-heading {
+          font-weight: bold;
+        }
+
+        .purchases-get-area {
+          display: flex;
+          justify-content: space-between;
+
+          .pga-left {
+            position: relative;
+
+            .purchases-content-area {
+              display: flex;
+
+              img {
+                width: 26%;
+              }
+
+              .purchases-inner-content {
+                line-height: 0.5;
+                padding-left: 20px;
+                p{
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+          .pga-right{
+            position: relative;
+            .pgar-amount{
+              line-height: 0.5;
+              p{
+                font-weight: 600;
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+  // =========================================== End Purchases Page Style ===========================================
 
   // =========================================== Market Perks Page Style ===========================================
   .market-perks-section {
@@ -1540,7 +1711,7 @@ body {
     text-decoration: none;
     color: $basic_text_color;
   }
-  
+
 }
 
 @mixin flex($direction, $justify, $gap, $align) {
@@ -1558,7 +1729,4 @@ body {
 
 .MuiFormControl-root.Mui-error .MuiOutlinedInput-notchedOutline {
   border-color: red;
-}
-.cursor-p{
-  cursor: pointer;
 }

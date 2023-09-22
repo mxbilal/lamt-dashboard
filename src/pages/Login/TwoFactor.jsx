@@ -43,7 +43,7 @@ const TwoFactor = () => {
       <div className='login-container'>
         {loading ? <LMTLoader /> : <Box className='login-inner'>
           <Box className="login-head">
-            <img width={50} height={50} className='logo' src='/favicon.png' />
+            <img width={50} height={50} className='logo' alt='logo' src='/favicon.png' />
             <Typography variant="h4" gutterBottom> Two Factor Authentication</Typography>
             <Typography variant="subtitle1" gutterBottom> Please enter code sent to your Email </Typography>
           </Box>

@@ -26,7 +26,7 @@ const MarketPerks = () => {
                                             <div className="mpic-start">
                                                 <div className="mpics-left">
                                                     <div className="mpic-img">
-                                                        <img src={PeoplePerHour} alt="" />
+                                                        <img src={PeoplePerHour} alt="People-Per-Hour" />
                                                     </div>
 
                                                     <div className="mpic-top">
@@ -53,7 +53,7 @@ const MarketPerks = () => {
                                             <div className="mpic-start">
                                                 <div className="mpics-left">
                                                     <div className="mpic-img">
-                                                        <img src={PeoplePerHour} alt="" />
+                                                        <img src={PeoplePerHour} alt="People-Per-Hour" />
                                                     </div>
 
                                                     <div className="mpic-top">
@@ -80,7 +80,7 @@ const MarketPerks = () => {
                                             <div className="mpic-start">
                                                 <div className="mpics-left">
                                                     <div className="mpic-img">
-                                                        <img src={PeoplePerHour} alt="" />
+                                                        <img src={PeoplePerHour} alt="People-Per-Hour" />
                                                     </div>
 
                                                     <div className="mpic-top">
@@ -107,7 +107,7 @@ const MarketPerks = () => {
                                             <div className="mpic-start">
                                                 <div className="mpics-left">
                                                     <div className="mpic-img">
-                                                        <img src={PeoplePerHour} alt="" />
+                                                        <img src={PeoplePerHour} alt="People-Per-Hour" />
                                                     </div>
 
                                                     <div className="mpic-top">
@@ -143,8 +143,8 @@ const MarketPerks = () => {
                                                     </div>
                                                     <div className="perks-content">
                                                         <p className="perks-para">
-                                                            Right out of the box, you can access discounts on hundreds of top software 
-                                                            solutions like Slack, Revolut, Hubspot, and Zoom through our partnership 
+                                                            Right out of the box, you can access discounts on hundreds of top software
+                                                            solutions like Slack, Revolut, Hubspot, and Zoom through our partnership
                                                             with BuiltFirst.
                                                         </p>
                                                     </div>
@@ -156,7 +156,7 @@ const MarketPerks = () => {
 
                                                 <div className="perks-right">
                                                     <div className="perks-image">
-                                                        <img src={PerksImg} alt="" />
+                                                        <img src={PerksImg} alt="Perks-Img" />
                                                     </div>
                                                 </div>
                                             </div>

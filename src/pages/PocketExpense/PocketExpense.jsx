@@ -45,6 +45,7 @@ const PocketExpense = () => {
                 formData.append("vat_rate", '0.2')
 
                 let response = await LAMT_API.endpoints.clientAdmin.expense.addExpenses(formData)
+                
                 setLoading(false)
                 if (response.status === 200) {
                   showAlert.success(response?.data?.message)
@@ -101,7 +102,7 @@ const PocketExpense = () => {
                         <div className="fcis-start">
                           <div className="fcis-inner">
                             <div className="fcis-img">
-                              <img src={Uncategorised} alt="" />
+                              <img src={Uncategorised} alt="uncategorised" />
                             </div>
 
                             <div className="fcis-text">

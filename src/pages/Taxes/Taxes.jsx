@@ -31,19 +31,19 @@ const Taxes = () => {
         <div className="uct-inner-content">
           <div className="uctic-area">
             <div className="uctic-content-start">
-              <img src={PayTaxIcon} alt="" />
+              <img src={PayTaxIcon} alt="Pay-Tax-Icon" />
               <p className='uctic-inner-para'><span>Confirmation Statement</span><br/>
               25th Nov 2022 - 24th Nov 2023</p>
             </div>
 
             <div className="uctic-content-start">
-              <img src={PayTaxIcon} alt="" />
+              <img src={PayTaxIcon} alt="Pay-Tax-Icon" />
               <p className='uctic-inner-para'><span>Annual Accounts</span><br/>
               15th Nov 2022 - 30th Nov 2023</p>
             </div>
 
             <div className="uctic-content-start">
-              <img src={PayTaxIcon} alt="" />
+              <img src={PayTaxIcon} alt="Pay-Tax-Icon" />
               <p className='uctic-inner-para'><span>First Corporation Tax Payment</span><br/>
               15th Nov 2022 - 14th Nov 2023</p>
             </div>
@@ -56,19 +56,19 @@ const Taxes = () => {
         <div className="uct-inner-content">
           <div className="uctic-area">
             <div className="uctic-content-start">
-              <img src={PayTaxIcon} alt="" />
+              <img src={PayTaxIcon} alt="Pay-Tax-Icon" />
               <p className='uctic-inner-para'><span>Confirmation Statement</span><br/>
               24th Nov 2023</p>
             </div>
 
             <div className="uctic-content-start">
-              <img src={PayTaxIcon} alt="" />
+              <img src={PayTaxIcon} alt="Pay-Tax-Icon" />
               <p className='uctic-inner-para'><span>Annual Accounts</span><br/>
               30th Nov 2023</p>
             </div>
 
             <div className="uctic-content-start">
-              <img src={PayTaxIcon} alt="" />
+              <img src={PayTaxIcon} alt="Pay-Tax-Icon" />
               <p className='uctic-inner-para'><span>First Corporation Tax Payment</span><br/>
               14th Nov 2023</p>
             </div>

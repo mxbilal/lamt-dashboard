@@ -33,7 +33,7 @@ const Dashboard = () => {
             <div className="cards">
               <div className="card-info">
                 <p>Cash Balance</p>
-                <img src={CashBalance} alt="" className='stat-img'/>
+                <img src={CashBalance} alt="Cash-Balance" className='stat-img'/>
               </div>
               <p className="amount">£500.00</p>
               <div className="week-summary">
@@ -50,7 +50,7 @@ const Dashboard = () => {
             <div className="cards">
               <div className="card-info">
                 <p>Owed to Business</p>
-               <img src={OwnedBusiness} alt="" className='stat-img'/>
+               <img src={OwnedBusiness} alt="Owned-Business" className='stat-img'/>
               </div>
               <p className="amount">£482.00</p>
               <div className="week-summary">
@@ -67,7 +67,7 @@ const Dashboard = () => {
             <div className="cards">
               <div className="card-info">
                 <p>Business Owes</p>
-                <img src={BusinessOwes} alt="" className='stat-img'/>
+                <img src={BusinessOwes} alt="Owned-Business" className='stat-img'/>
               </div>
               <p className="amount">£3041.00</p>
               <div className="week-summary">
@@ -84,7 +84,7 @@ const Dashboard = () => {
             <div className="cards">
               <div className="card-info">
                 <p>Dividends Available</p>
-                <img src={DividendAvailable} alt="" className='stat-img'/>
+                <img src={DividendAvailable} alt="Dividend-Available" className='stat-img'/>
               </div>
               <p className="amount">£5.00</p>
               <div className="week-summary">
@@ -110,7 +110,7 @@ const Dashboard = () => {
                 <div className="sci-area">
                   <div className="sci-start">
                     <div className="sci-icon">
-                      <img src={Invoice} alt="" className='shortcut-icon'/>
+                      <img src={Invoice} alt="Invoice" className='shortcut-icon'/>
                       <div className="sci-text">
                         <p>Send an Invoice</p>
                       </div>
@@ -119,7 +119,7 @@ const Dashboard = () => {
 
                   <div className="sci-start">
                     <div className="sci-icon">
-                     <img src={Dividend} alt="" className='shortcut-icon'/>
+                     <img src={Dividend} alt="Dividend" className='shortcut-icon'/>
                       <div className="sci-text">
                         <p>Pay a Dividend</p>
                       </div>
@@ -128,7 +128,7 @@ const Dashboard = () => {
 
                   <div className="sci-start">
                     <div className="sci-icon">
-                      <img src={ReferFriend} alt="" className='shortcut-icon'/>
+                      <img src={ReferFriend} alt="Refer-Friend" className='shortcut-icon'/>
                       <div className="sci-text">
                         <p>Refer a Friend</p>
                       </div>
@@ -137,7 +137,7 @@ const Dashboard = () => {
 
                   <div className="sci-start">
                     <div className="sci-icon">
-                     <img src={Subscription} alt="" className='shortcut-icon'/>
+                     <img src={Subscription} alt="Subscription" className='shortcut-icon'/>
                       <div className="sci-text">
                         <p>Manage Subscription</p>
                       </div>
@@ -149,7 +149,7 @@ const Dashboard = () => {
                 <div className="sci-area">
                   <div className="sci-start">
                     <div className="sci-icon">
-                     <img src={Expense} alt="" className='shortcut-icon'/>
+                     <img src={Expense} alt="Expense" className='shortcut-icon'/>
                       <div className="sci-text">
                         <p>Add an Expense</p>
                       </div>
@@ -158,7 +158,7 @@ const Dashboard = () => {
 
                   <div className="sci-start">
                     <div className="sci-icon">
-                      <img src={BankAccount} alt="" className='shortcut-icon'/>
+                      <img src={BankAccount} alt="Bank-Account" className='shortcut-icon'/>
                       <div className="sci-text">
                       <p>Add a Bank Account</p>
                       
@@ -168,7 +168,7 @@ const Dashboard = () => {
 
                   <div className="sci-start">
                     <div className="sci-icon">
-                      <img src={Invoice} alt="" className='shortcut-icon'/>
+                      <img src={Invoice} alt="Invoice" className='shortcut-icon'/>
                       <div className="sci-text">
                       <p>Add new sales invoice</p>
                       </div>
@@ -177,7 +177,7 @@ const Dashboard = () => {
 
                   <div className="sci-start">
                     <div className="sci-icon">
-                      <img src={Invoice} alt="" className='shortcut-icon'/>
+                      <img src={Invoice} alt="Invoice" className='shortcut-icon'/>
                       <div className="sci-text">
                         <p>Personal tax report</p>
                       </div>
@@ -208,7 +208,7 @@ const Dashboard = () => {
             <div className="ri-stats-list">
               <div className="risl-start">
                 <div className="risl-img">
-                  <img src={Invoice} alt="" className='invoice-image'/>
+                  <img src={Invoice} alt="Invoice" className='invoice-image'/>
                 </div>
 
                 <div className="risl-brand">
@@ -223,7 +223,7 @@ const Dashboard = () => {
 
               <div className="risl-start">
                 <div className="risl-img">
-                <img src={Invoice} alt="" className='invoice-image'/>
+                <img src={Invoice} alt="Invoice" className='invoice-image'/>
                 </div>
 
                 <div className="risl-brand">
@@ -238,7 +238,7 @@ const Dashboard = () => {
 
               <div className="risl-start">
                 <div className="risl-img">
-                <img src={Invoice} alt="" className='invoice-image'/>
+                <img src={Invoice} alt="Invoice" className='invoice-image'/>
                 </div>
 
                 <div className="risl-brand">

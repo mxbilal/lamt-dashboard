@@ -12,7 +12,6 @@ export const LAMT_API = {
     this.lamtApi.interceptors.response.use(this.onSuccess.bind(this), this.onError.bind(this))
   },
   onRequest(config) {
-    console.log("request", config.url, config, base_URL)
     let token = localStorage.getItem("authToken")
     if (['lamt-api'].includes(config.name)) {
       config.baseURL = base_URL;
@@ -130,54 +129,47 @@ export const LAMT_API = {
             url: '/sales'
           })
         },
-        getSalesById(id) {
-          return LAMT_API.lamtApi.request({
-            method: "GET",
-            url: `/sales/${id}`
-          })
-        },
         addSales(data) {
           return LAMT_API.lamtApi.request({
             method: "POST",
             url: '/sales',
             data
           })
-        },
-        deleteSales(id) {
+        }
+      },
+      clients: {
+        getAll() {
           return LAMT_API.lamtApi.request({
-            method: "DELETE",
-            url: `/sales/${id}`
+            method: "GET",
+            url: '/users'
+          })
+        },
+        add(data) {
+          return LAMT_API.lamtApi.request({
+            method: "POST",
+            url: '/users',
+            data,
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            }
           })
         }
       },
-
-      purchase: {
-        getPurchase() {
+      products: {
+        getAll() {
           return LAMT_API.lamtApi.request({
             method: "GET",
-            url: '/purchases'
+            url: '/product-or-services'
           })
         },
-        getSalesById(id) {
-          return LAMT_API.lamtApi.request({
-            method: "GET",
-            url: `/purchases/${id}`
-          })
-        },
-        addSupplierInvoice(data) {
+        add(data) {
           return LAMT_API.lamtApi.request({
             method: "POST",
-            url: '/purchases',
+            url: '/product-or-services',
             data
           })
-        },
-        deleteSupplierInvoice(id) {
-          return LAMT_API.lamtApi.request({
-            method: "DELETE",
-            url: `/purchases/${id}`
-          })
         }
-      }
+      },
     },
    
   }

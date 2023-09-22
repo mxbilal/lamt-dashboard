@@ -22,7 +22,7 @@ const AddConnection = () => {
                 <div className="mcai-top">
                   <div className="mcai-left">
                     <div className="mcai-top-img">
-                      <img src={HMRC} alt="" />
+                      <img src={HMRC} alt="HMRC" />
                     </div>
                     <div className="mcai-top-text">
                       <div className="mcai-top-text-area">
@@ -36,7 +36,7 @@ const AddConnection = () => {
                   </div>
                   <div className="mcai-right">
                     <div className="mcair-inner">
-                      <img src={Lock} alt="" />
+                      <img src={Lock} alt="Lock" />
                       <p>Connect</p>
                     </div>
                     </div>
@@ -45,7 +45,7 @@ const AddConnection = () => {
                 <div className="mcai-top">
                   <div className="mcai-left">
                     <div className="mcai-top-img">
-                      <img src={BnkAccount} alt="" />
+                      <img src={BnkAccount} alt="Bank-Account" />
                     </div>
                     <div className="mcai-top-text">
                       <div className="mcai-top-text-area-2">
@@ -59,7 +59,7 @@ const AddConnection = () => {
                   </div>
                   <div className="mcai-right">
                     <div className="mcair-inner">
-                      <img src={Lock} alt="" />
+                      <img src={Lock} alt="Lock" />
                       <p>Connect</p>
                     </div>
                     </div>
@@ -69,7 +69,7 @@ const AddConnection = () => {
                 <div className="mcai-top">
                   <div className="mcai-left">
                     <div className="mcai-top-img">
-                      <img src={Stripe} alt="" />
+                      <img src={Stripe} alt="Stripe" />
                     </div>
                     <div className="mcai-top-text">
                       <div className="mcai-top-text-area-2">
@@ -83,7 +83,7 @@ const AddConnection = () => {
                   </div>
                   <div className="mcai-right">
                     <div className="mcair-inner">
-                      <img src={Lock} alt="" />
+                      <img src={Lock} alt="Lock" />
                       <p>Connect</p>
                     </div>
                     </div>
