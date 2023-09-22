@@ -8,7 +8,7 @@ import PokcetExpense from "../../assets/img/pocket-expense.png";
 import Invoice from '../../assets/img/invoice.png'
 import { useNavigate } from "react-router-dom";
 
-const Purchases = () => {
+const AddNewSupplier = () => {
   const navigate = useNavigate()
   return (
     <>
@@ -27,7 +27,7 @@ const Purchases = () => {
                     <div className="purchases-content">
                       <img src={PokcetExpense} className='purchase-add-icon' alt="purchase-add-icon" />
                       <div className="purchases-inner-content">
-                        <p onClick={() => navigate('/add-suplier')}>Add a supplier invoice</p>
+                        <p onClick={() => navigate('/add-suplier-invoice')}>Add a supplier invoice</p>
                       </div>
                     </div>
 
@@ -86,4 +86,4 @@ const Purchases = () => {
   )
 }
 
-export default Purchases
+export default AddNewSupplier

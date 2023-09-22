@@ -30,21 +30,21 @@ const ReferFriends = () => {
                         using your unique referral code and we'll give you both £100.</p>
                     </div>
                     <div className="rfs-content">
-                      <img src={ShareIcon} alt="" />
+                      <img src={ShareIcon} alt="Share-Icon" />
                       <p className="rfs-para">
                       Share your unique referral link below with your friends.
                       </p>
                     </div>
 
                     <div className="rfs-content">
-                      <img src={SignupIcon} alt="" />
+                      <img src={SignupIcon} alt="Signup-Icon" />
                       <p className="rfs-para">
                       Get them to sign up and create an account with us using the link you provided.
                       </p>
                     </div>
 
                     <div className="rfs-content">
-                      <img src={BatchIcon} alt="" />
+                      <img src={BatchIcon} alt="Batch-Icon" />
                       <p className="rfs-para">
                       Once they've completed their trial, you'll both get £100 off of your LAMT subscription!
                       </p>
@@ -75,7 +75,7 @@ const ReferFriends = () => {
                   </div>
                 </div>
                 <div className="rfs-right-area">
-                  <img src={ReferFriendImage} alt="" />
+                  <img src={ReferFriendImage} alt="Refer-Friend-Image" />
                 </div>
               </div>
           </div>

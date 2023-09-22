@@ -23,14 +23,14 @@ const Payroll = () => {
                       <p className="prla-heading">Get started with payroll</p>
                     </div>
                     <div className="prla-content">
-                      <img src={MonthlyPay} alt="" />
+                      <img src={MonthlyPay} alt="Monthly-Pay" />
                       <p className="prla-para">
                         File your monthly pay runs directly to HMRC.
                       </p>
                     </div>
 
                     <div className="prla-content">
-                      <img src={MonthlyPay} alt="" />
+                      <img src={MonthlyPay} alt="Monthly-Pay" />
                       <p className="prla-para">
                         Access unlimited advice and support from our team of
                         experts.
@@ -38,7 +38,7 @@ const Payroll = () => {
                     </div>
 
                     <div className="prla-content">
-                      <img src={EmployeePay} alt="" />
+                      <img src={EmployeePay} alt="Employee-Pay" />
                       <p className="prla-para">
                         Add your team from £4+VAT per employee per month.
                       </p>
@@ -55,7 +55,7 @@ const Payroll = () => {
                   </div>
                 </div>
                 <div className="pr-right-area">
-                  <img src={PayrollImage} alt="" />
+                  <img src={PayrollImage} alt="Payroll-Image" />
                 </div>
               </div>
             </div>

@@ -78,7 +78,7 @@ const ResetPassword = () => {
       {loading ? <LMTLoader /> : <div className='login-container'>
         <Box className='login-inner'>
           <Box className="login-head">
-            <img width={200} className='logo' src={TopLogoImage} />
+            <img width={200} className='logo' src={TopLogoImage} alt='logo' />
             <Typography variant="h6" gutterBottom> Please Enter the Code </Typography>
           </Box>
           <form onSubmit={handleSubmit}>

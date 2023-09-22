@@ -26,7 +26,7 @@ const Transaction = () => {
                   <p className='top-heading'> Connect your accounts to get started</p>
                   <div className="tcial-inner-section">
                     <div className="tcialis-area-img">
-                      <img src={DataSecurity} alt="" />
+                      <img src={DataSecurity} alt="Data-Security" />
                     </div>
                     <div className="tcialis-area-text">
                     <p className="tcialista-th">Share your data securely</p>
@@ -36,7 +36,7 @@ const Transaction = () => {
 
                   <div className="tcial-inner-section">
                     <div className="tcialis-area-img">
-                      <img src={Controller} alt="" />
+                      <img src={Controller} alt="Controller" />
                     </div>
                     <div className="tcialis-area-text">
                     <p className="tcialista-th">You're in control</p>
@@ -46,7 +46,7 @@ const Transaction = () => {
 
                   <div className="tcial-inner-section">
                     <div className="tcialis-area-img">
-                      <img src={BalanceData} alt="" />
+                      <img src={BalanceData} alt="Balance-Data" />
                     </div>
                     <div className="tcialis-area-text">
                     <p className="tcialista-th">Opening balance dates</p>
@@ -68,7 +68,7 @@ const Transaction = () => {
             </div>
             <div className="tcia-right">
               <div className="tcia-img">
-                <img src={TransactionInner} alt="" />
+                <img src={TransactionInner} alt="Transaction-Inner" />
               </div>
             </div>
 

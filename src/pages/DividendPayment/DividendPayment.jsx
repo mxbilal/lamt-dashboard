@@ -18,7 +18,7 @@ const DividendPayment = () => {
             <div className="dap-inner">
               <div className="daip-content">
                 <div className="daicp-dividend">
-                  <img src={DividendAvailable} alt="" />
+                  <img src={DividendAvailable} alt="Dividend-Available" />
                   <div className="daicdp-inner">
                     <p className="dividp-text">Dividends available</p>
                     <p className="dividp-price">-£2,698</p>
@@ -26,7 +26,7 @@ const DividendPayment = () => {
                 </div>
 
                 <div className="daicp-tax-to-set">
-                  <img src={PayTax} alt="" />
+                  <img src={PayTax} alt="Pay-Tax" />
                   <div className="daicdp-inner">
                     <p className="dividp-text">0% tax left</p>
                     <p className="dividp-price">£13,570</p>

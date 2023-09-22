@@ -72,7 +72,7 @@ const Login = () => {
           loading ? <LMTLoader />
             : <Box className='login-inner'>
               <Box className="login-head">
-                <img width={50} height={50} className='logo' src='/favicon.png' />
+                <img width={50} height={50} className='logo' alt='logo' src='/favicon.png' />
                 <Typography variant="h4" gutterBottom> Welcome Admin</Typography>
                 <Typography variant="subtitle1" gutterBottom> Please Login to continue to dashboard </Typography>
               </Box>

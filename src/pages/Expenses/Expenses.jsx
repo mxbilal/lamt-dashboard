@@ -3,9 +3,6 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import PokcetExpense from "../../assets/img/pocket-expense.png";
 import VehicleExpense from "../../assets/img/vehicle-expense.png";
-import OperationExpense from "../../assets/img/operation-expese.png";
-import ImvestmentExpense from "../../assets/img/investment-expense.png";
-import PhoneExpense from "../../assets/img/phone-expense.png";
 import { useNavigate } from "react-router-dom";
 import { LAMT_API } from "../../api";
 import { showAlert } from "../../utils";
@@ -42,7 +39,7 @@ const Expenses = () => {
             <div className="es-area">
               <div className="es-inner">
                 <div className="esi-top">
-                  <img src={PokcetExpense} alt="" />
+                  <img src={PokcetExpense} alt="Pokcet-Expense" />
                   <p className="esit-heading cursor-p" onClick={() => navigate('/add-expense/0')}>Add out-of-pocket expense</p>
                 </div>
 

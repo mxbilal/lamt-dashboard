@@ -9,7 +9,7 @@ import Uncategorised from "../../assets/img/uncategorised.png";
 // import { showAlert } from "../../utils";
 import { useNavigate, useParams } from "react-router-dom";
 
-const AddSalesInvoice = () => {
+const AddSuplierInvoice = () => {
   const navigate = useNavigate()
 
   return (
@@ -130,4 +130,4 @@ const AddSalesInvoice = () => {
   );
 };
 
-export default AddSalesInvoice;
+export default AddSuplierInvoice;
