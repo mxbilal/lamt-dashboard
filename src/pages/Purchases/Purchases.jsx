@@ -57,7 +57,7 @@ const Purchases = () => {
                       <p>Overdue</p>
                     </div>
 
-                    {purchase?.filter(item => item?.current_role == 'vendor')?.map(cl => <div onClick={() => { navigate(`/sales/${cl?.id}`) }} className="esi-content">
+                    {purchase?.filter(item => item?.current_role == 'vendor')?.map(cl => <div onClick={() => { navigate(`/purchases/invoice/${cl?.id}`) }} className="esi-content">
                       <img src={OperationExpense} alt="vehicle-expense" />
                       <div className="esic-inner">
                         <p className="esic-heading">{cl?.first_name + " " + cl?.last_name} <br />

@@ -45,7 +45,7 @@ import UsersDetail from './pages/Users/UsersDetail'
 import UpdateDeletePurchases from './pages/Purchases/UpdateDeletePurchases'
 import AddPurchases from './pages/Purchases/addPurchase'
 import SalesDetailMain from './pages/Sales/SalesDetailmain'
-
+import PurchaseSalesDetail from './pages/Purchases/SalesDetail'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -103,6 +103,7 @@ function App() {
 
             <Route path='/adduser' element={<ProtectedRoute children={<AddUser />} />} />
             <Route path='/users' element={<ProtectedRoute children={<UsersDetail/>} />} />
+            <Route path='/purchases/invoice/:id' element={<ProtectedRoute children={<PurchaseSalesDetail/>} />} />
           </Routes>
         </BrowserRouter>
       </div>
