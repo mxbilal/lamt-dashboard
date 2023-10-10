@@ -130,7 +130,7 @@ export const LAMT_API = {
         getPurchases() {
           return LAMT_API.lamtApi.request({
             method: "GET",
-            url: "/purchases",
+            url: "/users",
           });
         },
         getPurchaseById(id) {
