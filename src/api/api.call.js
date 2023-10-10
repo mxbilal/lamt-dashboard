@@ -204,7 +204,7 @@ export const LAMT_API = {
             data,
           });
         },
-        addSales(data) {
+        updateSales(data) {
           return LAMT_API.lamtApi.request({
             method: "PUT",
             url: "/sales",
