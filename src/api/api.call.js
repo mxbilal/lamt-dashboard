@@ -130,7 +130,7 @@ export const LAMT_API = {
         getPurchases() {
           return LAMT_API.lamtApi.request({
             method: "GET",
-            url: "/purchases",
+            url: "/users",
           });
         },
         getPurchaseById(id) {
@@ -142,7 +142,7 @@ export const LAMT_API = {
         addPurchases(data) {
           return LAMT_API.lamtApi.request({
             method: "POST",
-            url: "/purchases",
+            url: "/users",
             data,
           });
         },

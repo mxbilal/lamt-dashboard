@@ -73,7 +73,7 @@ const SalesDetail = () => {
     return sum
   }
   const editData = async () => {
-    const response = await LAMT_API.endpoints.clientAdmin.sales.(id)
+    const response = await LAMT_API.endpoints.clientAdmin.sales(id)
     if (response.status === 200) {
       showAlert.success(response?.data?.message)
       navigate('/sales')
@@ -133,7 +133,7 @@ const SalesDetail = () => {
                         <div className="ri-area" style={{ float: "right", paddingRight: "50px" }}>
                           <h2>{detail?.name}</h2>
                           <p>{detail?.amount}</p>
-                          
+
                         </div>
 
                       </div>

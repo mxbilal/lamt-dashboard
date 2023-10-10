@@ -510,10 +510,10 @@ body {
   }
 
   // ====================================== Expenses Page Style =========================================
-  .expenses-section {
+  .expenses-section,.purchases-section {
     position: relative;
 
-    .es-area {
+    .es-area, .purchases-area{
       position: relative;
       margin: 0 30% 0 3%;
       background: white;
@@ -523,7 +523,7 @@ body {
         padding: 0 20px;
       }
 
-      .es-inner {
+      .es-inner, .purchases-inner {
         position: relative;
         background: white;
         // margin: 0 25% 0% 3%;
