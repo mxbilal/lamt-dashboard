@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
@@ -22,6 +22,19 @@ const PocketExpense = () => {
     }
     else showAlert.failure(response?.data?.message)
   }
+  const getDataById = async (id) => {
+    const response = await LAMT_API.endpoints.clientAdmin.expense.getExpenseById(id)
+    console.log("rr", response)
+    if (response.status === 200) {
+      showAlert.success(response?.data?.message)
+      // navigate('/expenses')
+    }
+    else showAlert.failure(response?.data?.message)
+  }
+
+  useEffect(()=>{
+    getDataById(id);
+  },[])
   return (
     <>
       <div className="main-area">

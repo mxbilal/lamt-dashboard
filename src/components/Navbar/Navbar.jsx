@@ -53,9 +53,19 @@ const Navbar = () => {
                 vertical: 'top',
                 horizontal: 'right',
               }}
+              style={{cursor:"pointer"}}
             >
               <div style={{ padding: '10px' }}>
                 <Typography onClick={handleLogout}> Logout </Typography>
+              </div>
+              <div style={{ padding: '10px' }}>
+                <Typography> Profile </Typography>
+              </div>
+              <div style={{ padding: '10px' }}>
+                <Typography> Settings </Typography>
+              </div>
+              <div style={{ padding: '10px' }}>
+                <Typography> Notification </Typography>
               </div>
             </Popover>
           </div>

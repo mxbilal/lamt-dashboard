@@ -14,7 +14,6 @@ const AddClient = () => {
   const navigate = useNavigate()
   const [clients, setCliens] = useState([])
   const [load, setLoad] = useState(true)
-
   const getClients = async () => {
     try {
       const response = await LAMT_API.endpoints.clientAdmin.clients.getAll()
@@ -49,7 +48,7 @@ const AddClient = () => {
                   <p className="esit-heading" onClick={() => navigate('/add-client')}>Add new client</p>
                 </div>
 
-                {!load ? clients.map(cl => <div className="esi-content">
+                {!load ? clients?.filter(item => item?.current_role == 'client')?.map(cl => <div onClick={()=>{navigate(`/sales/${cl?.id}`)}} className="esi-content">
                   <img src={OperationExpense} alt="vehicle-expense" />
                   <div className="esic-inner">
                     <p className="esic-heading">{cl?.first_name + " " + cl?.last_name} <br />

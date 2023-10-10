@@ -4,27 +4,30 @@ const base_URL = import.meta.env.VITE_APP_API_BASE_URL;
 
 export const LAMT_API = {
   lamtApi: Axios.create({
-    name: 'lamt-api'
+    name: "lamt-api",
   }),
   init() {
-    this.lamtApi.interceptors.request.use(this.onRequest.bind(this))
+    this.lamtApi.interceptors.request.use(this.onRequest.bind(this));
 
-    this.lamtApi.interceptors.response.use(this.onSuccess.bind(this), this.onError.bind(this))
+    this.lamtApi.interceptors.response.use(
+      this.onSuccess.bind(this),
+      this.onError.bind(this)
+    );
   },
   onRequest(config) {
-    let token = localStorage.getItem("authToken")
-    if (['lamt-api'].includes(config.name)) {
+    let token = localStorage.getItem("authToken");
+    if (["lamt-api"].includes(config.name)) {
       config.baseURL = base_URL;
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
   async onError(ex) {
-    console.log("onError", ex?.config?.url, { ex })
-    return ex
+    console.log("onError", ex?.config?.url, { ex });
+    return ex;
   },
   onSuccess(response) {
-    return response
+    return response;
   },
   endpoints: {
     superAdmin: {
@@ -32,145 +35,271 @@ export const LAMT_API = {
         return LAMT_API.lamtApi.request({
           method: "POST",
           url: `/superAdmin/login`,
-          data
-        })
+          data,
+        });
       },
       forgetPassword(data) {
         return LAMT_API.lamtApi.request({
           method: "POST",
           url: `/password/email`,
-          data
-        })
+          data,
+        });
       },
       resetPassword(data) {
         return LAMT_API.lamtApi.request({
           method: "POST",
           url: `/password/reset`,
-          data
-        })
+          data,
+        });
       },
       twoFactor(data) {
         return LAMT_API.lamtApi.request({
           method: "POST",
           url: `/verify2FA`,
-          data
-        })
-      }
+          data,
+        });
+      },
+    
     },
+   
     clientAdmin: {
       login(data) {
         return LAMT_API.lamtApi.request({
           method: "POST",
           url: `/client/login`,
-          data
-        })
+          data,
+        });
       },
       withGoogle(data) {
-        const formData = new FormData()
-        formData.append("email", data.email)
-        formData.append("password", data.email)
+        const formData = new FormData();
+        formData.append("email", data.email);
+        formData.append("password", data.email);
         return LAMT_API.lamtApi.request({
           method: "POST",
-          url: '/login/google',
+          url: "/login/google",
           data: formData,
           headers: {
-            "Access-Control-Allow-Origin": "*"
-          }
-        })
+            "Access-Control-Allow-Origin": "*",
+          },
+        });
       },
       register(data) {
         return LAMT_API.lamtApi.request({
           method: "POST",
-          url: '/client/register',
-          data
-        })
+          url: "/client/register",
+          data,
+        });
       },
       plans: {
         getPlans() {
           return LAMT_API.lamtApi.request({
             method: "GET",
-            url: '/plans'
-          })
-        }
+            url: "/plans",
+          });
+        },
       },
 
       expense: {
         getExpenses() {
           return LAMT_API.lamtApi.request({
             method: "GET",
-            url: '/expenses'
-          })
+            url: "/expenses",
+          });
         },
         getExpenseById(id) {
           return LAMT_API.lamtApi.request({
             method: "GET",
-            url: `/expenses/${id}`
-          })
+            url: `/expenses/${id}`,
+          });
         },
         addExpenses(data) {
           return LAMT_API.lamtApi.request({
             method: "POST",
-            url: '/expenses',
-            data
-          })
+            url: "/expenses",
+            data,
+          });
         },
         deleteExpense(id) {
           return LAMT_API.lamtApi.request({
             method: "DELETE",
-            url: `/expenses/${id}`
-          })
-        }
+            url: `/expenses/${id}`,
+          });
+        },
+      },
+      purchases: {
+        getPurchases() {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: "/purchases",
+          });
+        },
+        getPurchaseById(id) {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: `/purchases/${id}`,
+          });
+        },
+        addPurchases(data) {
+          return LAMT_API.lamtApi.request({
+            method: "POST",
+            url: "/purchases",
+            data,
+          });
+        },
+        updatePurchases(data) {
+          return LAMT_API.lamtApi.request({
+            method: "PUT",
+            url: "/purchases",
+            data,
+          });
+        },
+        deletePurchase(id) {
+          return LAMT_API.lamtApi.request({
+            method: "DELETE",
+            url: `/purchases/${id}`,
+          });
+        },
+      },
+      reports: {
+        profitAndLoss: {
+          getProfitLoss() {
+            return LAMT_API.lamtApi.request({
+              method: "GET",
+              url: "/reports/profit-loss/interval",
+            });
+          },
+
+          getProfitLossByInterval(startDate, endDate) {
+            return LAMT_API.lamtApi.request({
+              method: "GET",
+              url: `/reports/profit-loss/interval/${startDate}/${endDate}`,
+            });
+          },
+          getDataByThisMonth() {
+            return LAMT_API.lamtApi.request({
+              method: "GET",
+              url: `/reports/profit-loss/month/thisMonth`,
+            });
+          },
+          getDataByLastMonth() {
+            return LAMT_API.lamtApi.request({
+              method: "GET",
+              url: `/reports/profit-loss/month/lastMonth`,
+            });
+          },
+        },
       },
 
       sales: {
         getSales() {
           return LAMT_API.lamtApi.request({
             method: "GET",
-            url: '/sales'
-          })
+            url: `/sales`,
+          });
         },
         addSales(data) {
           return LAMT_API.lamtApi.request({
             method: "POST",
-            url: '/sales',
-            data
-          })
-        }
+            url: "/sales",
+            data,
+          });
+        },
+        addSales(data) {
+          return LAMT_API.lamtApi.request({
+            method: "PUT",
+            url: "/sales",
+            data,
+          });
+        },
+        getSalesById(id) {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: `/sales/${id}`,
+          });
+        },
+        deleteSalesById(id) {
+          return LAMT_API.lamtApi.request({
+            method: "DELETE",
+            url: `/sales/${id}`,
+          });
+        },
+      },
+      profile: {
+        getProfile() {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: `/client/profile`,
+          });
+        },
       },
       clients: {
         getAll() {
           return LAMT_API.lamtApi.request({
             method: "GET",
-            url: '/users'
-          })
+            url: "/users",
+          });
         },
+        getClientById(id) {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: `/users/${id}`,
+          });
+        },
+       del(id) {
+          return LAMT_API.lamtApi.request({
+            method: "DELETE",
+            url: `/client/delete/${id}`,
+          });
+        },
+
         add(data) {
           return LAMT_API.lamtApi.request({
             method: "POST",
-            url: '/users',
+            url: "/users",
             data,
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            }
-          })
-        }
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          });
+        },
+        update(data,id) {
+          return LAMT_API.lamtApi.request({
+            method: "PUT",
+            url: `/users/${id}`,
+            data,
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          });
+        },
       },
       products: {
         getAll() {
           return LAMT_API.lamtApi.request({
             method: "GET",
-            url: '/product-or-services'
-          })
+            url: "/product-or-services",
+          });
         },
         add(data) {
           return LAMT_API.lamtApi.request({
             method: "POST",
-            url: '/product-or-services',
-            data
-          })
-        }
+            url: "/product-or-services",
+            data,
+          });
+        },
+        getProductById(id) {
+          return LAMT_API.lamtApi.request({
+            method: "GET",
+            url: `/product-or-services/${id}`,
+          });
+        },
+        deleteProductById(id) {
+          return LAMT_API.lamtApi.request({
+            method: "DELETE",
+            url: `/product-or-services/${id}`,
+          });
+        },
       },
     },
-   
-  }
-}
+  },
+};

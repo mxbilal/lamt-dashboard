@@ -33,6 +33,18 @@ import AddClient from './pages/Sales/AddClient'
 import AddClientForm from './pages/Sales/AddClientForm'
 import AddProduct from './pages/Sales/AddProduct'
 import AddSuplier from './pages/Purchases/AddSuplier'
+import SalesDetail from './pages/Sales/SalesDetail'
+import ProductDetail from './pages/Sales/ProductDetail'
+import ProfitLoss from './pages/Reports/ProfitLoss'
+import SalesInvoice from './pages/Sales/SalesInvoice'
+import ProductCategory from './pages/Sales/ProductCategory'
+import UpdateDeleteClient from './pages/Sales/UpdateDeleteClient'
+import UpdateDeleteProduct from './pages/Sales/UpdateDeleteProduct'
+import AddUser from './pages/Users/AddUsers'
+import UsersDetail from './pages/Users/UsersDetail'
+import UpdateDeletePurchases from './pages/Purchases/UpdateDeletePurchases'
+import AddPurchases from './pages/Purchases/addPurchase'
+import SalesDetailMain from './pages/Sales/SalesDetailmain'
 
 
 function App() {
@@ -66,15 +78,31 @@ function App() {
             <Route path='/taxes' element={<ProtectedRoute children={<Taxes />} />} />
             <Route path='/market-perks' element={<ProtectedRoute children={<MarketPerks />} />} />
             <Route path='/purchases' element={<ProtectedRoute children={<Purchases />} />} />
+            <Route path='/add-purchase' element={<ProtectedRoute children={<AddPurchases />} />} />
+
             <Route path='/add-suplier-invoice' element={<ProtectedRoute children={<AddSuplierInvoice />} />} />
             <Route path='/add-suplier' element={<ProtectedRoute children={<AddSuplier />} />} />
+            <Route path='/update-delete-supplier/:id' element={<ProtectedRoute children={<UpdateDeletePurchases />} />} />
             <Route path='/sales' element={<ProtectedRoute children={<Sales />} />} />
+            <Route path='/sales/:id' element={<ProtectedRoute children={<SalesDetail />} />} />
+
+            <Route path='/sales/main/:id' element={<ProtectedRoute children={<SalesDetailMain />} />} />
+            <Route path='/sales/product' element={<ProtectedRoute children={<ProductDetail />} />} />
+            <Route path='/sales/product/:id' element={<ProtectedRoute children={<UpdateDeleteProduct />} />} />
+            <Route path='/sales-invoice' element={<ProtectedRoute children={<SalesInvoice />} />} />
+            <Route path='/product-category' element={<ProtectedRoute children={<ProductCategory />} />} />
             <Route path='/add-sales-invoice' element={<ProtectedRoute children={<AddSalesInvoice />} />} />
             <Route path='/add-client-sales' element={<ProtectedRoute children={<AddClient />} />} />
+            <Route path='/update-delete-client/:id' element={<ProtectedRoute children={<UpdateDeleteClient />} />} />
+            <Route path='/update-delete-product/:id' element={<ProtectedRoute children={<UpdateDeleteProduct />} />} />
             <Route path='/add-client' element={<ProtectedRoute children={<AddClientForm />} />} />
             <Route path='/add-new-products' element={<ProtectedRoute children={<AddProduct />} />} />
             <Route path='/reports' element={<ProtectedRoute children={<Reports />} />} />
+            <Route path='/profitloss' element={<ProtectedRoute children={<ProfitLoss />} />} />
             <Route path='/settings' element={<ProtectedRoute children={<Settings />} />} />
+
+            <Route path='/adduser' element={<ProtectedRoute children={<AddUser />} />} />
+            <Route path='/users' element={<ProtectedRoute children={<UsersDetail/>} />} />
           </Routes>
         </BrowserRouter>
       </div>

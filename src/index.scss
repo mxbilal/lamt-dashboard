@@ -13,8 +13,8 @@ body {
     display: flex;
 
     .sidebar-area {
-      flex: 1.3;
-      height: 100vh;
+      flex: 1.5;
+      // height: 100vh;
       background-color: white;
       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
@@ -29,7 +29,7 @@ body {
 
             img {
               max-width: 100%;
-              width: 65%;
+              // width: 65%;
               padding: 20px 30px;
             }
           }
@@ -519,15 +519,16 @@ body {
       background: white;
       border-radius: 10px;
 
-      .p-tabview-nav-container{
+      .p-tabview-nav-container {
         padding: 0 20px;
       }
+
       .es-inner {
         position: relative;
         background: white;
         // margin: 0 25% 0% 3%;
         border-radius: 13px;
-        
+
         .esi-top {
           display: flex;
           align-items: center;
@@ -553,6 +554,7 @@ body {
           align-items: center;
           padding: 10px 20px;
           // margin: 0% 15% 0% 3%;
+          cursor: pointer;
 
           img {
             width: 54px;
@@ -611,7 +613,8 @@ body {
             font-size: 14px;
             font-weight: 700;
           }
-          .numberOfDays{
+
+          .numberOfDays {
             width: 305px;
             height: 41px;
             margin: 10px auto;
@@ -621,6 +624,7 @@ body {
             border-radius: 6px;
             padding-left: 15px;
           }
+
           input {
             width: 305px;
             height: 41px;
@@ -663,7 +667,8 @@ body {
             font-size: 14px;
             font-weight: 700;
           }
-          .numberOfDays{
+
+          .numberOfDays {
             width: 95%;
             height: 41px;
             margin: 10px auto;
@@ -673,7 +678,8 @@ body {
             border-radius: 6px;
             padding-left: 15px;
           }
-          .currencyForClient{
+
+          .currencyForClient {
             width: 100%;
             height: 41px;
             margin: 10px auto;
@@ -683,6 +689,7 @@ body {
             border-radius: 6px;
             padding-left: 15px;
           }
+
           input {
             width: 305px;
             height: 41px;
@@ -711,6 +718,7 @@ body {
           }
         }
       }
+
       .form-center {
         position: relative;
 
@@ -772,29 +780,34 @@ body {
       }
 
       .radio-row {
-        display: flex;
-        justify-content: space-between;
+        // display: flex;
+        // justify-content: space-between;
         flex-direction: column;
         gap: 10px;
 
         input[type="radio"] {
           accent-color: gray !important;
         }
-        .radio-row-up{
+
+        .radio-row-up {
           display: flex;
           justify-content: space-between;
         }
-        .radio-row-down{
+
+        .radio-row-down {
           display: flex;
           justify-content: flex-start;
           gap: 40px;
         }
       }
-      .radio-rows{
+
+      .radio-rows {
         position: relative;
-        label{
+
+        label {
           margin-right: 50px;
         }
+
         input[type="radio"] {
           accent-color: gray !important;
         }
@@ -1135,6 +1148,21 @@ body {
       }
     }
   }
+
+  //=========================================== Start Sales Invoice Style ============================================
+  .add-new-line-category {
+    position: relative;
+
+    .add-new-line {
+      text-align: center;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      margin: 50px;
+      cursor: pointer;
+    }
+  }
+
+  //=========================================== End Sales Invoice Style ============================================
 
   // =========================================== Payroll Page  Style ===========================================
   .payroll-section {
@@ -1518,17 +1546,21 @@ body {
               .purchases-inner-content {
                 line-height: 0.5;
                 padding-left: 20px;
-                p{
+
+                p {
                   font-weight: 600;
                 }
               }
             }
           }
-          .pga-right{
+
+          .pga-right {
             position: relative;
-            .pgar-amount{
+
+            .pgar-amount {
               line-height: 0.5;
-              p{
+
+              p {
                 font-weight: 600;
               }
             }
@@ -1540,6 +1572,166 @@ body {
   }
 
   // =========================================== End Purchases Page Style ===========================================
+
+  // =========================================== Start Users Page Style ===========================================
+  .users-page {
+    position: relative;
+    margin: auto 35px;
+
+    .top-user-details {
+      position: relative;
+
+      .user-details-inner {
+        position: relative;
+
+        .udi-start {
+          display: inline-grid;
+
+          .userUploadImg {
+            margin-top: 10px
+          }
+        }
+
+        .uid-area {
+          display: flex;
+          justify-content: space-between;
+          margin: 30px auto;
+
+          .uid-section {
+            display: inline-grid;
+            width: 100%;
+            margin: auto 10px;
+
+            .ui-field {
+              border: none;
+              box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+              background-color: #d9d9d940;
+              outline: none;
+              padding: 15px;
+              margin-top: 10px;
+            }
+          }
+        }
+
+      }
+    }
+
+    .btn-user-submit {
+      background-color: #635EFF;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .user-permission {
+      position: relative;
+
+      .up-inner-section {
+        position: relative;
+
+        .upis-start {
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid #8080802e;
+
+          .radio-rows {
+            margin-left: 20%;
+            display: flex;
+
+            .user-permission-label {
+              margin: auto 40px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .user-details-page {
+    position: relative;
+    background: white;
+    padding: 10px;
+    margin: auto 3%;
+    border-radius: 10px;
+
+    .ud-inner-section {
+      position: relative;
+
+      .udi-area {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .top-search {
+          display: flex;
+          align-items: center;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+          width: 30%;
+          justify-content: space-between;
+          margin: 2% 3%;
+          padding: 10px;
+          background: #8080800d;
+
+          .user-input {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+          }
+        }
+
+        .btn-user-add {
+          height: 40px;
+          margin-right: 50px;
+          background-color: #635EFF;
+          border: none;
+          color: white;
+          font-size: 16px;
+          cursor: pointer;
+          padding: 10px 20px;
+          border-radius: 4px;
+        }
+      }
+
+      .user-table-details {
+        position: relative;
+
+        .top-user-details {
+          position: relative;
+
+          .table-head {
+            display: flex;
+            justify-content: space-between;
+            margin: auto 3%;
+            background: #E9F1FE;
+            padding: 0px 20px;
+            border-radius: 6px;
+          }
+
+          .table-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: auto 3%;
+            padding: 0px 20px;
+            border-radius: 6px;
+            img{
+              width: 25px;
+              height: 25px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // =========================================== End Users Page Style ===========================================
 
   // =========================================== Market Perks Page Style ===========================================
   .market-perks-section {

@@ -10,7 +10,6 @@ import Uncategorised from "../../assets/img/uncategorised.png";
 import { useNavigate, useParams } from "react-router-dom";
 
 const AddSalesInvoice = () => {
-  const navigate = useNavigate()
 
   return (
     <>

@@ -10,14 +10,15 @@ import { LAMT_API } from "../../api";
 import { showAlert } from "../../utils";
 import { useNavigate, useParams } from "react-router-dom";
 import { Select } from "@mui/material";
+import UpdateDeleteClient from "../Sales/UpdateDeleteClient";
 
-const AddClientForm = () => {
+const UpdateDeletePurchases = () => {
     const navigate = useNavigate()
     const handleSubmit = async (values) => {
         let formdata = {
             ...values,
             last_name: "venus",
-            role: "client",
+            role: "vendor",
             status: "1",
             state: "Punjab",
             phone: "+1234567890",
@@ -26,7 +27,7 @@ const AddClientForm = () => {
             vat_rate: "20"
         }
         const data = querystring.stringify(formdata)
-        let response = await LAMT_API.endpoints.clientAdmin.clients.add(data)
+        let response = await LAMT_API.endpoints.clientAdmin.purchases.addPurchases(data)
         console.log("ree", response, response.data, response.status)
         if (response.status === 200) {
             showAlert.success(response?.data?.message)
@@ -178,4 +179,4 @@ const AddClientForm = () => {
     );
 };
 
-export default AddClientForm;
+export default UpdateDeletePurchases;

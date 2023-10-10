@@ -1,19 +1,35 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Uncategorised from "../../assets/img/uncategorised.png";
-import querystring from 'querystring'
+import { useParams } from "react-router-dom";
 import { LAMT_API } from "../../api";
 import { showAlert } from "../../utils";
-import { useNavigate, useParams } from "react-router-dom";
-import { Select } from "@mui/material";
 
-const AddClientForm = () => {
-    const navigate = useNavigate()
-    const handleSubmit = async (values) => {
+
+
+const UpdateDeleteClient = () => {
+    const { id } = useParams();
+    const [detail, setDetail] = useState(null);
+
+    console.log('id',id)
+    const getClient = async () => {
+        try {
+          const response = await LAMT_API.endpoints.clientAdmin.clients.getClientById(id)
+          if (response.status === 200) {
+            let data = response?.data?.data;
+            console.log('data',response?.data?.data)
+
+            setDetail(data)
+          }
+          else showAlert.failure(response?.data?.message ?? "Failed!")
+        }
+        catch (e) {
+          console.log(e)
+        }
+      }
+      const handleSubmit = async (values) => {
         let formdata = {
             ...values,
             last_name: "venus",
@@ -25,8 +41,7 @@ const AddClientForm = () => {
             vat_type: "standard_rate",
             vat_rate: "20"
         }
-        const data = querystring.stringify(formdata)
-        let response = await LAMT_API.endpoints.clientAdmin.clients.add(data)
+        let response = await LAMT_API.endpoints.clientAdmin.clients.update(formdata,id)
         console.log("ree", response, response.data, response.status)
         if (response.status === 200) {
             showAlert.success(response?.data?.message)
@@ -34,6 +49,18 @@ const AddClientForm = () => {
         }
         else showAlert.failure(response?.data?.message ?? "Failed!")
     }
+      const handleDelete = async () => {
+        const response = await LAMT_API.endpoints.clientAdmin.clients.del(id);
+        if (response.status === 200) {
+          showAlert.success(response?.data?.message)
+          navigate('/sales')
+        }
+        else showAlert.failure(response?.data?.message)
+      }
+
+      useEffect(()=>{
+        getClient()
+      },[])
     return (
         <>
             <div className="main-area">
@@ -44,8 +71,11 @@ const AddClientForm = () => {
                     <Navbar />
 
                     <div>
-                        <Formik
+                       {detail &&  <Formik
                             initialValues={{
+                                first_name:detail?.first_name ,
+                                email:detail?.email,
+                                
                             }}
                             onSubmit={handleSubmit}
                         >
@@ -62,6 +92,7 @@ const AddClientForm = () => {
                                                         id="first_name"
                                                         name="first_name"
                                                         placeholder="Jack Jones"
+                                                        defaultValue={detail?.first_name}
                                                     />
                                                 </div>
                                             </div>
@@ -165,12 +196,13 @@ const AddClientForm = () => {
 
 
                                         <div className="form-button">
-                                            <button type="submit" className="btn-save" >Add Client</button>
+                                            <button type="submit" className="btn-save" >Update Client</button>
+                                            <button onClick={()=>handleDelete()} type="submit" className="btn-save" style={{marginLeft:"10px"}}>Delete Client</button>
                                         </div>
                                     </div>
                                 </div>
                             </Form>
-                        </Formik>
+                        </Formik>}
                     </div>
                 </div>
             </div>
@@ -178,4 +210,4 @@ const AddClientForm = () => {
     );
 };
 
-export default AddClientForm;
+export default UpdateDeleteClient;

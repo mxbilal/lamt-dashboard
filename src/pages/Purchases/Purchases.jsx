@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { TabView, TabPanel } from 'primereact/tabview';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
@@ -7,9 +7,30 @@ import Navbar from "../../components/Navbar/Navbar";
 import PokcetExpense from "../../assets/img/pocket-expense.png";
 import Invoice from '../../assets/img/invoice.png'
 import { useNavigate } from "react-router-dom";
+import { LAMT_API } from '../../api';
+import { showAlert } from '../../utils';
+import VehicleExpense from "../../assets/img/vehicle-expense.png";
+
 
 const Purchases = () => {
   const navigate = useNavigate()
+  const [purchase, setPurchase] = useState([])
+
+  const getPurchases = async () => {
+    try {
+      const response = await LAMT_API.endpoints.clientAdmin.purchases.getPurchases()
+      if (response.status === 200) {
+        setPurchase(Object.values(response?.data?.data ?? { data: [] }).flat())
+      }
+      else showAlert.failure(response?.data?.message ?? "Failed!")
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
+  useEffect(() => {
+    getPurchases()
+  }, [])
   return (
     <>
       <div className="main-area">
@@ -27,7 +48,7 @@ const Purchases = () => {
                     <div className="purchases-content">
                       <img src={PokcetExpense} className='purchase-add-icon' alt="purchase-add-icon" />
                       <div className="purchases-inner-content">
-                        <p onClick={() => navigate('/add-suplier')}>Add a supplier invoice</p>
+                        <p onClick={() => navigate(`/add-purchase`)}>Add a supplier invoice</p>
                       </div>
                     </div>
 
@@ -35,23 +56,13 @@ const Purchases = () => {
                       <p>Overdue</p>
                     </div>
                     
-                    <div className="purchases-get-area">
-                      <div className="pga-left">
-                      <div className="purchases-content-area">
-                      <img src={Invoice} className='purchase-add-icon' alt="purchase-invoice" />
-                      <div className="purchases-inner-content">
-                        <p>Invoice #1 is Due in next 5 days</p>
-                        <span>28th February 2023</span>
-                      </div>
-                    </div>
-                      </div>
-                      <div className="pga-right">
-                      <div className="pgar-amount">
-                        <p>£6.00</p>
-                        <span>£1.00 VAT</span>
-                      </div>
-                      </div>
-                    </div>
+                    {purchase?.map(ex => <div className="esi-content">
+                  <img src={VehicleExpense} alt="" />
+                  <div className="esic-inner cursor-p" onClick={() => navigate(`/add-purchase/${ex.id}`)}>
+                    <p className="esic-heading">{ex?.name} <br /><span className="esich-para">{ex?.created_at.split(".")[0]}</span></p>
+                    <p className="esic-price">{ex?.value} <br /> <span className="esicp-para">{ex?.vat_rate} VAT</span></p>
+                  </div>
+                </div>)}
 
 
                   </TabPanel>

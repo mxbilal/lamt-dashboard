@@ -35,6 +35,12 @@ const Sidebar = () => {
                 </li>
 
                 <li>
+                    <Link to="/users">
+                    <img src={ReferFriend} alt="" className="sidebar-img-logo"/><span>Users</span>
+                    </Link>
+                </li>
+                
+                <li>
                 <Link to="/transaction">
                     <img src={TransactionBadge} alt="" className="sidebar-img-logo" /><span>Transaction</span>
                     </Link>

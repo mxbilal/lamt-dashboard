@@ -16,6 +16,7 @@ const Sales = () => {
   const navigate = useNavigate()
   const [salesList, setSalesList] = useState([])
   const [productList, setProductList] = useState([])
+  const [clientList, setClientList] = useState([])
 
   const GetSales = async () => {
     try {
@@ -44,9 +45,23 @@ const Sales = () => {
       console.log(e)
     }
   }
+  const GetClients = async () => {
+    try {
+      const response = await LAMT_API.endpoints.clientAdmin.clients.getAll()
+      if (response.status === 200) {
+        let data = response?.data?.data
+        setClientList(data)
+      }
+      else showAlert.failure(response?.data?.message ?? "Failed!")
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
   useEffect(() => {
     GetSales()
     GetProducts()
+    GetClients()
   }, [])
   return (
     <>
@@ -67,11 +82,20 @@ const Sales = () => {
                       <p className="esit-heading" onClick={() => navigate('/add-client-sales')}>Add new sales invoice</p>
                     </div>
 
-                    {salesList.map(list => <div className="esi-content">
+                    {/* {salesList.map(list => <div onClick={() => navigate(`/sales/${list?.id}`)} className="esi-content" >
                       <img src={VehicleExpense} alt="vehicle-expense" />
                       <div className="esic-inner">
                         <p className="esic-heading">{list?.name} <br /><span className="esich-para">{list?.dated.split(' ')[0]}</span></p>
                         <p className="esic-price">£{list?.amount} <br /> <span className="esicp-para">£{list?.vat_rate} VAT</span></p>
+                      </div>
+                    </div>)} */}
+
+                    {salesList.map(client => <div onClick={() => navigate(`/sales/main/${client?.id}`)} className="esi-content" >
+                      <img src={VehicleExpense} alt="vehicle-expense" />
+                      <div className="esic-inner">
+                        <div className="esic-inner">
+                          <p className="esic-heading">{`${client?.name}`} <br /><span className="esich-para">{client?.amount}</span><br /><span className="esich-para">{client?.vat_rate}</span></p>
+                        </div>
                       </div>
                     </div>)}
 
@@ -88,7 +112,7 @@ const Sales = () => {
                           <p className="esit-heading" onClick={() => navigate('/add-new-products')}>Add new product or service</p>
                         </div>
 
-                        {productList.map(pr => <div className="esi-content">
+                        {productList.map(pr => <div onClick={() => navigate(`/update-delete-product/${pr?.id}`)} className="esi-content">
                           <img src={VehicleExpense} alt="vehicle-expense" />
                           <div className="esic-inner">
                             <p className="esic-heading">{pr?.name ?? ""}<br /><span className="esich-para">&pound;{pr?.price ?? 0}</span></p>
@@ -110,14 +134,16 @@ const Sales = () => {
                         </div>
 
                         <p>Which client are you invoicing?</p>
-                        <div className="esi-content">
-
+                        {clientList?.filter(item => item?.current_role == 'client')?.map(client => <div onClick={() => navigate(`/update-delete-client/${client?.id}`)} className="esi-content" >
                           <img src={VehicleExpense} alt="vehicle-expense" />
                           <div className="esic-inner">
-                            <p className="esic-heading">Jack Jones <br /><span className="esich-para">jack@gmail.com</span></p>
+                            <div className="esic-inner">
+                              <p className="esic-heading">{`${client?.first_name} ${client?.last_name}`} <br /><span className="esich-para">{client?.email}</span></p>
 
+                            </div>
                           </div>
-                        </div>
+                        </div>)}
+
 
                       </div>
                     </div>

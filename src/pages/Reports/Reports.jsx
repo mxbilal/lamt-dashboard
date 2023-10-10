@@ -6,8 +6,10 @@ import BalanceSheetIcon from "../../assets/img/balancesheet-icon.png";
 import DividendIcon from "../../assets/img/dividendavailable.png";
 import MoneyOwed from "../../assets/img/moneyowed.png";
 import PersonalTaxInvoice from "../../assets/img/personaltaxreport.png";
+import { useNavigate } from 'react-router-dom';
 
 const Reports = () => {
+  const navigate = useNavigate()
   return (
     <>
       <div className="main-area">
@@ -19,7 +21,7 @@ const Reports = () => {
           <div className="expenses-section">
             <div className="es-area">
               <div className="es-inner">
-                <div className="esi-content">
+                <div className="esi-content" onClick={() =>navigate("/profitloss")}>
                   <img src={ProfitLossIcon} alt="profile-icon" />
                   <div className="esic-inner">
                     <p className="esic-heading">Profit & Loss</p>

@@ -17,7 +17,7 @@ const AddClientForm = () => {
         let formdata = {
             ...values,
             last_name: "venus",
-            role: "client",
+            role: "vendor",
             status: "1",
             state: "Punjab",
             phone: "+1234567890",
