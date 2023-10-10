@@ -142,7 +142,7 @@ export const LAMT_API = {
         addPurchases(data) {
           return LAMT_API.lamtApi.request({
             method: "POST",
-            url: "/purchases",
+            url: "/users",
             data,
           });
         },
