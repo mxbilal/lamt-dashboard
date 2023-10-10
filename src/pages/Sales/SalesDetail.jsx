@@ -11,7 +11,7 @@ const SalesDetail = () => {
   const [detail, setDetail] = useState(null);
   const [clientList, setClientList] = useState(null)
   const [products, setProducts] = useState(null)
-const [data,setData]=useState([]);
+  const [data, setData] = useState([]);
   const { id } = useParams();
   const location = useLocation();
 
@@ -60,7 +60,7 @@ const [data,setData]=useState([]);
   }
 
   const editData = async () => {
-    const response = await LAMT_API.endpoints.clientAdmin.sales.(id)
+    const response = await LAMT_API.endpoints.clientAdmin.sales(id)
     if (response.status === 200) {
       showAlert.success(response?.data?.message)
       navigate('/sales')
@@ -96,7 +96,7 @@ const [data,setData]=useState([]);
                         <div className="ri-area" style={{ float: "right", paddingRight: "50px" }}>
                           <h2>{detail?.name}</h2>
                           <p>{detail?.amount}</p>
-                          
+
                         </div>
 
                       </div>
@@ -107,15 +107,15 @@ const [data,setData]=useState([]);
                       </div>
 
                       <div className="addSelectedItems">
-                      <h4 style={{paddingLeft:"6%"}}>Items</h4>
-                      <div className='innerSelectedItem' style={{display: "flex", justifyContent: "space-between", margin: "auto 6%"}}>
-                      <p>{location?.state?.name}</p>
-                      <p>{location?.state?.price}<br/>
-                      </p>
-                      {/* <p>{`${location?.state?.price}`}
+                        <h4 style={{ paddingLeft: "6%" }}>Items</h4>
+                        <div className='innerSelectedItem' style={{ display: "flex", justifyContent: "space-between", margin: "auto 6%" }}>
+                          <p>{location?.state?.name}</p>
+                          <p>{location?.state?.price}<br />
+                          </p>
+                          {/* <p>{`${location?.state?.price}`}
                       </p> */}
-                      {/* <p>{location?.state?.vat_rate}</p> */}
-                      </div>
+                          {/* <p>{location?.state?.vat_rate}</p> */}
+                        </div>
                       </div>
 
                       <div className='add-new-line-category'>
@@ -123,15 +123,15 @@ const [data,setData]=useState([]);
                           <p>Add New Line</p>
                         </div>
                         <Select
-              labelId="demo-select-small-label"
-              // value={products[0]?.id}
-              // label={products[0]?.name}
-              onChange={(e) => setData(...data)}
-            >
-              {products?.map(option =>
-                <MenuItem value={option.id}>{option.name}</MenuItem>
-              )}
-            </Select>
+                          labelId="demo-select-small-label"
+                          // value={products[0]?.id}
+                          // label={products[0]?.name}
+                          onChange={(e) => setData(...data)}
+                        >
+                          {products?.map(option =>
+                            <MenuItem value={option.id}>{option.name}</MenuItem>
+                          )}
+                        </Select>
 
                         <div className='totalAmount' style={{ width: "100%", display: "inline-block" }}>
                           <div className="inner-tam" style={{ float: "right", paddingRight: "50px" }}>
