@@ -7,12 +7,15 @@ import { showAlert } from "../../utils";
 import { Button, MenuItem, Select } from '@mui/material';
 
 const SalesDetailMain = () => {
+  let sum = 0
   const [detail, setDetail] = useState(null);
   const [clientList, setClientList] = useState(null)
   const [products, setProducts] = useState(null)
-const [data,setData]=useState([]);
+  const [data, setData] = useState([]);
   const { id } = useParams();
   const location = useLocation();
+  const [selectedProducts, setSelectedProducts] = useState([])
+  const navigate = useNavigate()
 
   console.log('location', location?.state)
 
@@ -66,6 +69,42 @@ const [data,setData]=useState([]);
     }
     else showAlert.failure(response?.data?.message)
   }
+  const totalSum = () => {
+    sum = 0;
+    products?.map?.(product => {
+      if (selectedProducts?.includes?.(product?.id)) {
+        sum = parseInt(sum) + parseInt(product.price)
+      }
+    })
+    console.log("sum here", sum)
+    // setTotal(sum)
+    return sum
+  }
+  const handleUpdate = async () => {
+    const formData = {
+      name: 'Invoices for5Client 41' + Math.random(10),
+      invoice_for_user_id: id,
+      type: "Invoice",
+      issue_date: "2023-10-22",
+      due_date: "2023-10-22",
+      dated: "2023-10-22",
+      status: "Pending",
+      vat_rate: "200",
+      vat_type: "reduced_rate",
+      category_list_items: [],
+      product_or_services: `[${selectedProducts}]`,
+      amount: sum
+    }
+
+    LAMT_API.endpoints.clientAdmin.sales.updateSales(formData, id).then(res => {
+      console.log("res after adding invoic", res);
+      if (res.status === 200) {
+        navigate('/sales')
+      } else {
+        alert("Opps!! Something bad has happened.")
+      }
+    })
+  }
   // Fetch sales data when the component mounts
   useEffect(() => {
     getSalesById(id);
@@ -95,7 +134,7 @@ const [data,setData]=useState([]);
                         <div className="ri-area" style={{ float: "right", paddingRight: "50px" }}>
                           <h2>{detail?.name}</h2>
                           <p>{detail?.amount}</p>
-                          
+
                         </div>
 
                       </div>
@@ -106,40 +145,43 @@ const [data,setData]=useState([]);
                       </div>
 
                       <div className="addSelectedItems">
-                      <h4 style={{paddingLeft:"6%"}}>Items</h4>
-                      <div className='innerSelectedItem' style={{display: "flex", justifyContent: "space-between", margin: "auto 6%"}}>
-                      <p>{location?.state?.name}</p>
-                      <p>{location?.state?.price}<br/>
-                      </p>
-                      {/* <p>{`${location?.state?.price}`}
-                      </p> */}
-                      {/* <p>{location?.state?.vat_rate}</p> */}
-                      </div>
+                        <h4 style={{ paddingLeft: "6%" }}>Items</h4>
+                        {
+                          products?.map?.(product => {
+                            return (
+                              selectedProducts?.includes(product?.id) ?
+                                <div className='innerSelectedItem' style={{ display: "flex", justifyContent: "space-between", margin: "auto 6%" }}>
+                                  <p>{product?.name}</p>
+                                  <p>{product?.price}</p>
+                                </div> : ''
+                            )
+                          })
+                        }
                       </div>
 
                       <div className='add-new-line-category'>
-                        <div className="add-new-line" onClick={() => navigate("/product-category")}>
+                        {/* <div className="add-new-line" onClick={() => navigate("/product-category")}>
                           <p>Add New Line</p>
-                        </div>
+                        </div> */}
                         <Select
-              labelId="demo-select-small-label"
-              // value={products[0]?.id}
-              // label={products[0]?.name}
-              onChange={(e) => setData(...data)}
-            >
-              {products?.map(option =>
-                <MenuItem value={option.id}>{option.name}</MenuItem>
-              )}
-            </Select>
+                          labelId="demo-select-small-label"
+                          // value={products[0]?.id}
+                          // label={products[0]?.name}
+                          onChange={(e) => setSelectedProducts([...selectedProducts, e.target.value])}
+                        >
+                          {products?.map(option =>
+                            <MenuItem value={option.id}>{option.name}</MenuItem>
+                          )}
+                        </Select>
 
                         <div className='totalAmount' style={{ width: "100%", display: "inline-block" }}>
                           <div className="inner-tam" style={{ float: "right", paddingRight: "50px" }}>
                             <p>Subtotal: <span>{detail?.amount}</span></p>
                             <p>VAT: <span>0</span></p>
-                            <p>Total: <span>{detail?.amount}</span></p>
+                            <p>Total: <span>{totalSum()}</span></p>
 
-                            <Button onClick={()=>{handleDelete()}}>delete</Button>
-                            <Button>update</Button>
+                            <Button onClick={() => { handleDelete() }}>delete</Button>
+                            <Button onClick={handleUpdate}>update</Button>
 
                           </div>
                         </div>

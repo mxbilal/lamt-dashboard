@@ -24,7 +24,8 @@ const Sales = () => {
       if (response.status === 201) {
         let data = response?.data?.data
 
-        setSalesList([...data['Invoices'], ...Object.values(data['Overdue-invoices'])])
+        setSalesList([...data['Invoices']])
+        // setSalesList([...data['Invoices'], ...Object.values(data['Overdue-invoices'])])
       }
       else showAlert.failure(response?.data?.message ?? "Failed!")
     }
@@ -63,6 +64,7 @@ const Sales = () => {
     GetProducts()
     GetClients()
   }, [])
+  console.log(clientList)
   return (
     <>
       <div className="main-area">
@@ -82,22 +84,23 @@ const Sales = () => {
                       <p className="esit-heading" onClick={() => navigate('/add-client-sales')}>Add new sales invoice</p>
                     </div>
 
-                    {/* {salesList.map(list => <div onClick={() => navigate(`/sales/${list?.id}`)} className="esi-content" >
+                    {salesList.map(list => <div onClick={() => navigate(`/sales/main/${list?.client.user_id}`)} className="esi-content" >
                       <img src={VehicleExpense} alt="vehicle-expense" />
                       <div className="esic-inner">
                         <p className="esic-heading">{list?.name} <br /><span className="esich-para">{list?.dated.split(' ')[0]}</span></p>
                         <p className="esic-price">£{list?.amount} <br /> <span className="esicp-para">£{list?.vat_rate} VAT</span></p>
                       </div>
-                    </div>)} */}
-
-                    {salesList.map(client => <div onClick={() => navigate(`/sales/main/${client?.id}`)} className="esi-content" >
+                    </div>)}
+                    {/* {clientList?.filter(item => item?.current_role == 'client')?.map(client => <div onClick={() => navigate(`/sales/main/${client?.id}`)} className="esi-content" >
                       <img src={VehicleExpense} alt="vehicle-expense" />
                       <div className="esic-inner">
                         <div className="esic-inner">
-                          <p className="esic-heading">{`${client?.name}`} <br /><span className="esich-para">{client?.amount}</span><br /><span className="esich-para">{client?.vat_rate}</span></p>
+                          <p className="esic-heading">{`${client?.first_name} ${client?.last_name}`} <br /><span className="esich-para">{client?.email}</span></p>
+
                         </div>
                       </div>
-                    </div>)}
+                    </div>)} */}
+
 
                   </div>
 

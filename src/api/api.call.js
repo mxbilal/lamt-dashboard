@@ -204,11 +204,14 @@ export const LAMT_API = {
             data,
           });
         },
-        updateSales(data) {
+        updateSales(data,id) {
           return LAMT_API.lamtApi.request({
             method: "PUT",
-            url: "/sales",
+            url: "/sales/"+id,
             data,
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
           });
         },
         getSalesById(id) {
