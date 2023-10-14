@@ -174,7 +174,7 @@ const PurchaseSalesDetail = () => {
                           // value={products[0]?.id}
                           // label={products[0]?.name}
                           onChange={(e) => setSelectedProducts([...selectedProducts, e.target.value])}
-                        >
+                        style={{width:"90%", marginLeft:"5%"}}>
                           {products?.map(option =>
                             <MenuItem value={option.id}>{option.name}</MenuItem>
                           )}

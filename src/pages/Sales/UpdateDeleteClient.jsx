@@ -8,7 +8,6 @@ import { LAMT_API } from "../../api";
 import { showAlert } from "../../utils";
 
 
-
 const UpdateDeleteClient = () => {
     const { id } = useParams();
     const [detail, setDetail] = useState(null);
@@ -106,6 +105,7 @@ const UpdateDeleteClient = () => {
                                                         id="email"
                                                         name="email"
                                                         placeholder="jack@gmail.com"
+                                                        defaultValue={detail?.email}
                                                     />
                                                 </div>
                                             </div>
@@ -117,7 +117,7 @@ const UpdateDeleteClient = () => {
 
                                                 <div className="fields">
                                                     <div className="inner-field">
-                                                        <Field id="address" name="address" placeholder="Street Address" />
+                                                        <Field id="address" name="address" placeholder="Street Address" defaultValue={detail?.info?.address}/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -133,6 +133,7 @@ const UpdateDeleteClient = () => {
                                                         id="city"
                                                         name="city"
                                                         placeholder="London"
+                                                        defaultValue={detail?.info?.city}
                                                     />
                                                 </div>
                                             </div>
@@ -146,6 +147,7 @@ const UpdateDeleteClient = () => {
                                                         id="zip_code"
                                                         name="zip_code"
                                                         placeholder="54000"
+                                                        defaultValue={detail?.info?.zip_code}
                                                     />
                                                 </div>
                                             </div>
@@ -157,7 +159,7 @@ const UpdateDeleteClient = () => {
 
                                                 <div className="fields">
                                                     <div className="inner-field">
-                                                        <Field id="country" name="country" placeholder="United Kingdom" />
+                                                        <Field id="country" name="country" placeholder="United Kingdom" defaultValue={detail?.info?.country}/>
                                                     </div>
                                                 </div>
                                             </div>

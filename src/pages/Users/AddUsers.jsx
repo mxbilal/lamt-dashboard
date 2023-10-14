@@ -4,8 +4,34 @@ import Sidebar from '../../components/Sidebar/Sidebar'
 import Navbar from '../../components/Navbar/Navbar'
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Form, Field, Formik } from "formik";
+import { LAMT_API } from "../../api";
+import { showAlert } from "../../utils";
+import { useNavigate, useParams } from "react-router-dom";
+import querystring from 'querystring'
 
 const AddUser = () => {
+    const navigate = useNavigate()
+    const handleSubmit = async (values) => {
+        let formdata = {
+            ...values,
+            // last_name: "venus",
+            role: "vendor",
+            // status: "1",
+            // state: "Punjab",
+            phone: "+1234567890",
+            // default_currency: "USD",
+            // vat_type: "standard_rate",
+            // vat_rate: "20"
+        }
+        const data = querystring.stringify(formdata)
+        let response = await LAMT_API.endpoints.clientAdmin.clients.add(data)
+        console.log("ree", response, response.data, response.status)
+        if (response.status === 200) {
+            showAlert.success(response?.data?.message)
+            navigate('/users')
+        }
+        else showAlert.failure(response?.data?.message ?? "Failed!")
+    }
     return (
         <>
             <div className='main-area'>
@@ -15,9 +41,19 @@ const AddUser = () => {
                 <div className="dashboardContainer">
                     <Navbar />
                     <div className='users-page'>
+                   
+
                         <TabView>
                             <TabPanel header="User Details">
+                          
+                            
                                 <div className="top-user-details">
+                                <Formik
+                            initialValues={{
+                            }}
+                            onSubmit={handleSubmit}
+                        >
+                                <Form>
                                     <div className="user-details-inner">
                                         <div className="udi-start">
                                             <label>Your Logo</label>
@@ -28,43 +64,113 @@ const AddUser = () => {
                                             <div className="uid-area">
                                                 <div className="uid-section">
                                                     <label>Legal Name</label>
-                                                    <input type="text" className='ui-field' placeholder='Jack Jones' />
+                                                    <Field
+                                                        id="first_name"
+                                                        name="first_name"
+                                                        placeholder="Jack Jones"
+                                                        style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                                                            backgroundColor: "rgba(217, 217, 217, 0.2509803922)",
+                                                            outline: "none",
+                                                            padding: "15px",
+                                                            marginTop: "10px",
+                                                            border: "none",
+                                                        }}
+                                                    />
                                                 </div>
 
                                                 <div className="uid-section">
                                                     <label>Email Address</label>
-                                                    <input type="text" className='ui-field' placeholder='jack@gmail.com' />
+                                                    <Field
+                                                        id="email"
+                                                        name="email"
+                                                        placeholder="jack@gmail.com"
+                                                        style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                                                            backgroundColor: "rgba(217, 217, 217, 0.2509803922)",
+                                                            outline: "none",
+                                                            padding: "15px",
+                                                            marginTop: "10px",
+                                                            border: "none",
+                                                        }}
+                                                    />
                                                 </div>
 
                                                 <div className="uid-section">
                                                     <label>Street Address</label>
-                                                    <input type="text" className='ui-field' placeholder='Houe 13, Street 14' />
+                                                    <Field
+                                                        id="address" 
+                                                        name="address" 
+                                                        placeholder="Street Address"
+                                                        style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                                                            backgroundColor: "rgba(217, 217, 217, 0.2509803922)",
+                                                            outline: "none",
+                                                            padding: "15px",
+                                                            marginTop: "10px",
+                                                            border: "none",
+                                                        }}
+                                                    />
                                                 </div>
                                             </div>
 
                                             <div className="uid-area">
                                                 <div className="uid-section">
                                                     <label>City Town</label>
-                                                    <input type="text" className='ui-field' placeholder='London' />
+                                                    <Field
+                                                        id="city"
+                                                        name="city"
+                                                        placeholder="London"
+                                                        style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                                                            backgroundColor: "rgba(217, 217, 217, 0.2509803922)",
+                                                            outline: "none",
+                                                            padding: "15px",
+                                                            marginTop: "10px",
+                                                            border: "none",
+                                                        }}
+                                                    />
                                                 </div>
 
                                                 <div className="uid-section">
                                                     <label>Post Code</label>
-                                                    <input type="text" className='ui-field' placeholder='1254' />
+                                                    <Field
+                                                        id="zip_code"
+                                                        name="zip_code"
+                                                        placeholder="54000"
+                                                        style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                                                            backgroundColor: "rgba(217, 217, 217, 0.2509803922)",
+                                                            outline: "none",
+                                                            padding: "15px",
+                                                            marginTop: "10px",
+                                                            border: "none",
+                                                        }}
+                                                    />
                                                 </div>
 
                                                 <div className="uid-section">
                                                     <label>Country</label>
-                                                    <input type="text" className='ui-field' placeholder='United Kingdom' />
+                                                    <Field
+                                                       id="country" 
+                                                       name="country" 
+                                                       placeholder="United Kingdom"
+                                                        style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                                                            backgroundColor: "rgba(217, 217, 217, 0.2509803922)",
+                                                            outline: "none",
+                                                            padding: "15px",
+                                                            marginTop: "10px",
+                                                            border: "none",
+                                                        }}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <button type='submit' className='btn-user-submit'>Submit</button>
+                                        <div className="form-button">
+                                        <button type='submit' className='btn-user-submit btn-save'>Submit</button>
+                                        </div>
                                     </div>
+                                    </Form>
+                                    </Formik>
                                 </div>
+                                
                             </TabPanel>
-                            <TabPanel header="Permissions">
+                            {/* <TabPanel header="Permissions">
                               <Formik>
                               <Form>
                                <div className="user-permission">
@@ -374,10 +480,13 @@ const AddUser = () => {
                                 </div>
                                </Form>
                               </Formik>
-                            </TabPanel>
+                            </TabPanel> */}
 
                         </TabView>
+                        
+                                
                     </div>
+                    
                 </div>
             </div>
         </>

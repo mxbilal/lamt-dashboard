@@ -53,6 +53,7 @@ const SalesDetail = () => {
       const response = await LAMT_API.endpoints.clientAdmin.clients.getClientById(id)
       if (response.status === 200) {
         let data = response?.data?.data
+        console.log(data)
         setClientList(data)
       }
       else showAlert.failure(response?.data?.message ?? "Failed!")
@@ -93,9 +94,9 @@ const SalesDetail = () => {
     data.append('name', 'Invoices for5Client 41'+Math.random(10));
     data.append('invoice_for_user_id', id);
     data.append('type', 'Invoice');
-    data.append('issue_date', '2023-06-15');
-    data.append('due_date', '2023-06-30');
-    data.append('dated', '2023-06-22');
+    data.append('issue_date', '2023-11-15');
+    data.append('due_date', '2023-11-30');
+    data.append('dated', '2023-11-22');
     data.append('status', 'Pending');
     data.append('vat_rate', '200');
     data.append('vat_type', 'reduced_rate');
@@ -129,14 +130,14 @@ const SalesDetail = () => {
                       <div className="top-heading-invoice">
                         <h5 style={{ padding: "10px" }}>Add Invoice</h5>
                       </div>
-                      <div className="right-info" key={detail?.id} style={{ width: "100%", display: "inline-block" }}>
+                      {/* <div className="right-info" key={detail?.id} style={{ width: "100%", display: "inline-block" }}>
                         <div className="ri-area" style={{ float: "right", paddingRight: "50px" }}>
                           <h2>{detail?.name}</h2>
                           <p>{detail?.amount}</p>
 
                         </div>
 
-                      </div>
+                      </div> */}
 
                       <div className="left-info" key={clientList?.id} style={{ paddingLeft: "50px" }}>
                         <h2>{clientList?.first_name}</h2>
@@ -173,7 +174,7 @@ const SalesDetail = () => {
                           // value={products[0]?.id}
                           // label={products[0]?.name}
                           onChange={(e) => setSelectedProducts([...selectedProducts, e.target.value])}
-                        >
+                        style={{width:"90%", marginLeft:"5%"}}>
                           {products?.map(option =>
                             <MenuItem value={option.id}>{option.name}</MenuItem>
                           )}

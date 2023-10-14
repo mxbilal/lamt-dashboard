@@ -81,16 +81,19 @@ const SalesDetailMain = () => {
     return sum
   }
   const handleUpdate = async () => {
+    console.log(23)
     const formData = {
+      // name: 'Invoices for5Client 41' + Math.random(10)
       name: 'Invoices for5Client 41' + Math.random(10),
       invoice_for_user_id: id,
       type: "Invoice",
-      issue_date: "2023-10-22",
-      due_date: "2023-10-22",
-      dated: "2023-10-22",
+      issue_date: "2023-11-15",
+      due_date: "2023-11-30",
+      dated: "2023-11-22",
       status: "Pending",
       vat_rate: "200",
-      vat_type: "reduced_rate",
+      vat_type: "zero_rate",
+      current_role: "client",
       category_list_items: [],
       product_or_services: `[${selectedProducts}]`,
       amount: sum

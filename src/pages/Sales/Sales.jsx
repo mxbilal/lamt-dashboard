@@ -23,7 +23,9 @@ const Sales = () => {
       const response = await LAMT_API.endpoints.clientAdmin.sales.getSales()
       if (response.status === 201) {
         let data = response?.data?.data
-
+        console.log("*************************")
+        console.log(data)
+        console.log("*************************")
         setSalesList([...data['Invoices']])
         // setSalesList([...data['Invoices'], ...Object.values(data['Overdue-invoices'])])
       }
@@ -84,12 +86,13 @@ const Sales = () => {
                       <p className="esit-heading" onClick={() => navigate('/add-client-sales')}>Add new sales invoice</p>
                     </div>
 
-                    {salesList.map(list => <div onClick={() => navigate(`/sales/main/${list?.client.user_id}`)} className="esi-content" >
+                    {salesList.map(list => <div onClick={() => navigate(`/sales/main/${list?.id}`)} className="esi-content" >
                       <img src={VehicleExpense} alt="vehicle-expense" />
                       <div className="esic-inner">
                         <p className="esic-heading">{list?.name} <br /><span className="esich-para">{list?.dated.split(' ')[0]}</span></p>
                         <p className="esic-price">£{list?.amount} <br /> <span className="esicp-para">£{list?.vat_rate} VAT</span></p>
                       </div>
+                     
                     </div>)}
                     {/* {clientList?.filter(item => item?.current_role == 'client')?.map(client => <div onClick={() => navigate(`/sales/main/${client?.id}`)} className="esi-content" >
                       <img src={VehicleExpense} alt="vehicle-expense" />

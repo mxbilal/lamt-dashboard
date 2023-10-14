@@ -150,7 +150,7 @@ const ProfitLoss = () => {
                           style={{ width: "100%", border: "1px solid #80808042", padding: "10px", borderRadius: "10px", backgroundColor: "aliceblue", outline:"none" }}
                         />
                       </div>
-                      <div className="esi-content" key={detail?.id} style={{margin:"10px"}}>
+                      <div className="esi-content" key={detail?.id} style={{margin:"10px", display:"inline"}}>
                         <div className="top-pl" style={{display:"flex", justifyContent:"space-between"}}>
                         <p>Total Revenue: </p>
                         <p>£ {detail?.totalRevenue}</p>
@@ -196,7 +196,7 @@ const ProfitLoss = () => {
                     </div>
                   </TabPanel>
                   <TabPanel header="This Month">
-                    <div className="esi-content" key={detail?.id} style={{margin:"10px"}}>
+                    <div className="esi-content" key={detail?.id} style={{margin:"10px", display:"inline"}}>
 
                       <div className="top-pl" style={{display:"flex", justifyContent:"space-between"}}>
                         <p>Total Revenue: </p>
@@ -237,7 +237,7 @@ const ProfitLoss = () => {
                   </TabPanel>
 
                   <TabPanel header="Last Month">
-                    <div className="esi-content" key={detail?.id} style={{margin:"10px"}}>
+                    <div className="esi-content" key={detail?.id} style={{margin:"10px", display:"inline"}}>
                    
                       <div className="top-pl" style={{display:"flex", justifyContent:"space-between"}}>
                         <p>Total Revenue: </p>

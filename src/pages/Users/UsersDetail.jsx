@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import '../../index.scss'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Navbar from '../../components/Navbar/Navbar'
@@ -8,10 +8,34 @@ import { useNavigate } from 'react-router-dom'
 import { LAMT_API } from "../../api";
 import { showAlert } from "../../utils";
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 
 const UsersDetail = () => {
-    const navigate = useNavigate()
-
+    const [clientList, setClientList] = useState([])
+  const navigate = useNavigate()
+    const GetClients = async () => {
+        try {
+          const response = await LAMT_API.endpoints.clientAdmin.clients.getAll()
+          if (response.status === 200) {
+            let data = response?.data?.data
+            setClientList(data)
+          }
+          else showAlert.failure(response?.data?.message ?? "Failed!")
+        }
+        catch (e) {
+          console.log(e)
+        }
+      }
+      useEffect(() => {
+        GetClients()
+      }, [])
   return (
     <>
             <div className='main-area'>
@@ -31,79 +55,61 @@ const UsersDetail = () => {
                                 <button className='btn-user-add' onClick={()=>navigate("/adduser")}> + Add User</button>
                             </div>
 
-                            <div className="user-table-details">
+                            {/* <div className="user-table-details">
                                 <div className="top-user-details">
                                     <div className="table-head">
                                         <p>Name</p>
                                         <p>Email</p>
                                         <p>Roles</p>
                                         <p>Date Added</p>
-                                        <p>Last Login</p>
-                                        <p>Options</p>
                                     </div>
 
                                     <div className="table-inner"  >
-                                    <p>John Doe</p>
-                                        <p>demo@demo.com</p>
-                                        <p>users</p>
-                                        <p>12/12/2022</p>
-                                        <p>12/12/2022</p>
-                                        <img src={SettingGaer} alt="" />
+                                    
+                                        
+                                        {clientList.map(client => <ul>
+                         
+
+                          <li>{client?.first_name}</li>
+                          <li>{client?.email}</li>
+                          <li>{client?.current_role}</li>
+                          <li>{client?.created_at}</li>
+                        </ul>)}
                                     </div>
 
-                                    <div className="table-inner">
-                                        <p>John Doe</p>
-                                        <p>demo@demo.com</p>
-                                        <p>users</p>
-                                        <p>12/12/2022</p>
-                                        <p>12/12/2022</p>
-                                        <img src={SettingGaer} alt="" />
-                                    </div>
-
-                                    <div className="table-inner">
-                                        <p>John Doe</p>
-                                        <p>demo@demo.com</p>
-                                        <p>users</p>
-                                        <p>12/12/2022</p>
-                                        <p>12/12/2022</p>
-                                        <img src={SettingGaer} alt="" />
-                                    </div>
-
-                                    <div className="table-inner">
-                                        <p>John Doe</p>
-                                        <p>demo@demo.com</p>
-                                        <p>users</p>
-                                        <p>12/12/2022</p>
-                                        <p>12/12/2022</p>
-                                        <img src={SettingGaer} alt="" />
-                                    </div>
-                                    <div className="table-inner">
-                                        <p>John Doe</p>
-                                        <p>demo@demo.com</p>
-                                        <p>users</p>
-                                        <p>12/12/2022</p>
-                                        <p>12/12/2022</p>
-                                        <img src={SettingGaer} alt="" />
-                                    </div>
-                                    <div className="table-inner">
-                                        <p>John Doe</p>
-                                        <p>demo@demo.com</p>
-                                        <p>users</p>
-                                        <p>12/12/2022</p>
-                                        <p>12/12/2022</p>
-                                        <img src={SettingGaer} alt="" />
-                                    </div>
-                                    <div className="table-inner">
-                                        <p>John Doe</p>
-                                        <p>demo@demo.com</p>
-                                        <p>users</p>
-                                        <p>12/12/2022</p>
-                                        <p>12/12/2022</p>
-                                        <img src={SettingGaer} alt="" />
-                                    </div>
+                                    
                                 </div>
-                            </div>
+                            </div> */}
                            
+
+                           <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Email</TableCell>
+            <TableCell align="right">Roles</TableCell>
+            <TableCell align="right">Date Created</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {clientList.map((client) => (
+            <TableRow
+              key={client?.id}
+              
+            >
+              <TableCell component="th" scope="row">
+              {client?.first_name}
+              </TableCell>
+              <TableCell align="right">{client?.email}</TableCell>
+              <TableCell align="right">{client?.current_role}</TableCell>
+              <TableCell align="right">{client?.created_at}</TableCell>
+              {/* <TableCell align="right">{row.protein}</TableCell> */}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
                         </div>
                     </div>
                 </div>
